@@ -25,7 +25,7 @@ public interface GPFacadeLocal {
      * @param p_name  Name of the patient
      * @return GPDetails object
      */
-    public boolean addPatient(String gp_name, String p_name);
+    public boolean addPatient(String gp_name, String p_username);
 
     /**
      * Returns a representation of the gp with name gp_name

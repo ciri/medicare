@@ -2,6 +2,7 @@ package ejb.gp;
 
 import entity.gp.GPFacadeLocal;
 import entity.patient.PatientFacadeLocal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import util.GPDetails;
@@ -53,6 +54,24 @@ public class GPBean implements GPRemote {
             return patientFacadeBean.editPatient(patient);
         else
             return false;
+    }
+    public boolean createPatient(String gp_username, String gp_password, String p_SSN, String p_username, String p_password) {
+        if(gpFacadeBean.isValidPassword(gp_username, gp_password)) {
+            try {
+                patientFacadeBean.createPatient(p_SSN, p_username, p_password);
+            } catch(Exception e) {
+                return false;
+            }
+            return gpFacadeBean.addPatient(gp_username, p_username);
+        }
+        return false;
+    }
+
+    public List<PatientDetails> getAllPatientDetails(String gp_name, String gp_password) {
+        if(gpFacadeBean.isValidPassword(gp_name, gp_password))
+            return patientFacadeBean.getAllPatients();
+        else
+            return null;
     }
 }
 

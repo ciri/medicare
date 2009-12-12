@@ -18,9 +18,9 @@ public class PatientBean implements PatientRemote {
     @EJB
     private PatientFacadeLocal patientFacadeBean;
 
-    public boolean addPatient(String username, String password) {
+    public boolean addPatient(String SSN, String username, String password) {
         try {
-            patientFacadeBean.createPatient(username, password);
+            patientFacadeBean.createPatient(SSN, username, password);
             return true;
         } catch (Exception e) {
             return false;

@@ -24,13 +24,15 @@ public class PatientFacadeBean implements PatientFacadeLocal {
     private EntityManager em;
 
     /************************** FACADE-METHODES *******************************/
-    public void createPatient(String name, String password) {
-        if (findByName(name) != null)  throw new IllegalArgumentException();
-        Patient patient = new Patient(name, password);
+    public boolean createPatient(String SSN, String username,String password) {
+        if (findByUsername(username) != null || findBySSN(SSN) != null)
+            return false;
+        Patient patient = new Patient(SSN,username,password);
         create(patient);
+        return true;
     }
-    public PatientDetails getPatient(String name) {
-        return convert(findByName(name),true);
+    public PatientDetails getPatient(String username) {
+        return convert(findByUsername(username),true);
     }
     public boolean editPatient(PatientDetails pd) {
         Patient p = findById(pd.getId());
@@ -41,13 +43,30 @@ public class PatientFacadeBean implements PatientFacadeLocal {
         edit(p);
         return true;
     }
-    
+    public List<PatientDetails> getAllPatients() {
+        List<Patient> patients = (List<Patient>) em.createNamedQuery("entity.patient.Patient.findAllPatients").getResultList();
+        List<PatientDetails> ps = new ArrayList<PatientDetails>();
+        for(Patient p : patients) {
+            ps.add(new PatientDetails(p.getId(),p.getSSN(),p.getUsername()));
+        }
+        return ps;
+    }
     /************************** HULPMETHODES *********************************/
     public Patient findById(Long id) {
         return em.find(Patient.class, id);
     }
-    public Patient findByName(String name) {
-        List<Patient> patients = (List<Patient>) em.createNamedQuery("entity.patient.Patient.findPatientByName").setParameter("name", name).getResultList();
+    public Patient findByUsername(String username) {
+        List<Patient> patients = (List<Patient>) em.createNamedQuery("entity.patient.Patient.findPatientByUsername").setParameter("username", username).getResultList();
+        if (patients.size() == 1) {
+            return patients.get(0);
+        } else if (patients.size() > 1) {
+            throw new IllegalStateException();
+        } else {
+            return null;
+        }
+    }
+    public Patient findBySSN(String SSN) {
+        List<Patient> patients = (List<Patient>) em.createNamedQuery("entity.patient.Patient.findPatientBySSN").setParameter("SSN", SSN).getResultList();
         if (patients.size() == 1) {
             return patients.get(0);
         } else if (patients.size() > 1) {
@@ -60,12 +79,15 @@ public class PatientFacadeBean implements PatientFacadeLocal {
         if (p == null)
             return null;
         else {
-            List<String> gps = new ArrayList<String>();
+            Collection<String> gps = new ArrayList<String>();
             if(includeGPList) {
-                for (Object gp : p.getGPs())
+                for (Object gp : p.getGps())
                     gps.add(((GP)gp).getName());
             }
-            return new PatientDetails(p.getId(),p.getName(),p.getUsername(),gps);
+            PatientDetails pd = new PatientDetails(p.getId(),p.getSSN(),p.getUsername());
+            pd.setName(p.getName());
+            pd.setGps(gps);
+            return pd;
         }
     }
     
