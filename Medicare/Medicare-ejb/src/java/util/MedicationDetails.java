@@ -16,6 +16,7 @@ public class MedicationDetails implements Serializable {
         setStandarddose(standarddose);
         setUnitdose(unitdose);
     }
+
     /**
      * Get the value of unitdose
      *

@@ -61,7 +61,8 @@ public class PatientFacadeBean implements PatientFacadeLocal {
     public boolean addPrescription(String p_username, PrescriptionDetails pd) {
         Patient pat = findByUsername(p_username);
         Prescription p = new Prescription(pd);
-                     p.setMedication(findMedicationByName(pd.getMedication().getName()));
+            Medication m = findMedicationByName(pd.getMedication().getName());
+            p.setMedication(findMedicationByName(pd.getMedication().getName()));
 
         pat.getPrescriptions().add(p);
         edit(pat);

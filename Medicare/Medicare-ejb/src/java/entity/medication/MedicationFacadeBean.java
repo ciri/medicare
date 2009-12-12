@@ -17,6 +17,8 @@ public class MedicationFacadeBean implements MedicationFacadeLocal {
     private EntityManager em;
 
     public boolean addMedication(MedicationDetails md) {
+        if(findByName(md.getName()) != null)
+            return false;
         Medication m = new Medication();
         m.setName(md.getName());
         m.setStandarddose(m.getStandarddose());
@@ -44,8 +46,6 @@ public class MedicationFacadeBean implements MedicationFacadeLocal {
         List<Medication> medications = (List<Medication>) em.createNamedQuery("entity.medication.Medication.findMedicationByName").setParameter("name", name).getResultList();
         if (medications.size() == 1) {
             return medications.get(0);
-        } else if (medications.size() > 1) {
-            throw new IllegalStateException();
         } else {
             return null;
         }

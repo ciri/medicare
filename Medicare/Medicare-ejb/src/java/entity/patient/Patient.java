@@ -70,9 +70,9 @@ public class Patient implements Serializable {
 
     @OneToMany
     private Collection<Task> tasks;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Collection<Measurement> measurements;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Collection<Prescription> prescriptions;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "patients")

@@ -17,14 +17,14 @@ public class PrescriptionDetails implements Serializable {
     private MedicationDetails medication;
 
     public PrescriptionDetails() {}
-    public PrescriptionDetails(String unit, String frequency, String fixed, MedicationDetails medication ) {
+    public PrescriptionDetails(String unit, String frequency, String starttime, String endtime,String fixed, String medication ) {
         this(
                 Integer.parseInt(unit),
                 Integer.parseInt(frequency),
                 new Date(),
                 new Date(),
                 Boolean.parseBoolean(fixed),
-                medication
+                new MedicationDetails(medication,0,0)
         );
     }
     public PrescriptionDetails(int unit, int frequency, Date starttime, Date endtime, boolean fixed, MedicationDetails medication) {
