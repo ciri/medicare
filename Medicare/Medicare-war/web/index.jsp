@@ -1,19 +1,17 @@
 <%-- 
     Document   : index
-    Created on : 10-nov-2009, 17:31:52
-    Author     : kenneth
+    Created on : Dec 12, 2009, 2:07:57 AM
+    Author     : ciri
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
+
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+    <%@include file="jspf/header.jspf" %>
+        <h1>Index</h1>
+        Placeholder ...
+    <%@include file="jspf/footer.jspf" %>
 </html>

@@ -1,0 +1,15 @@
+<%@ page import="javax.naming.*,ejb.gp.GPRemote" %>
+
+<%!
+    private GPRemote gpRemote = null;
+
+    public GPRemote getGPRemote() {
+        try {
+            InitialContext ic = new InitialContext();
+            return (GPRemote) ic.lookup(GPRemote.class.getName());
+        } catch (Exception ex) {
+            System.out.println("Couldn't create gpRemote bean." + ex.getMessage());
+            return null;
+        }
+    }
+ %>
