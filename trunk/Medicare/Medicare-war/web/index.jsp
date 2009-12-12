@@ -12,4 +12,4 @@
                 session.setAttribute("role"    , request.getParameter("role"));
             }
         %>
-    <%@include file="jspf/footer.jspf" %>
+<%@include file="jspf/footer.jspf" %>
