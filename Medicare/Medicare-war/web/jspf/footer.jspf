@@ -1,9 +1,11 @@
-<%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
 
 
 
     <br>
-    <center>Medicare 2009 &copy; Enric Junqué de Fortuny & Kenneth Waegeman for UGent.</center>
+        <center>
+            Medicare 2009 &copy; Enric Junqué de Fortuny & Kenneth Waegeman for UGent.<br/>
+            <%= session.getAttribute("username") %>
+        </center>
     </body>
 </html>

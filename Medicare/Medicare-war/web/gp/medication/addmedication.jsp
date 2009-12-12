@@ -10,7 +10,7 @@
 
    if(posted == null) {
 %>
-        <h1>Add measurement</h1>
+        <h1>Add medication</h1>
             <form method="POST" action="addmedication.jsp">
                 <input type="hidden" name="username" value="<%= request.getParameter("username") %>"/>
             <table>
@@ -45,8 +45,8 @@
             }
         %>
        <%
-            String gp_name  = "gp0";
-            String gp_password = "gp0";
+            String gp_name      = session_username;
+            String gp_password  = session_password;
 
             String m_name    = request.getParameter("name");
             String m_sdose   = request.getParameter("sdose");

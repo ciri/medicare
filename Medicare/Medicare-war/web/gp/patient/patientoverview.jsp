@@ -22,11 +22,11 @@
         <title>Initialize</title>
     </head>
     <body>
-        <h1>Patient Overview For gp0</h1>
+        <h1>Patient Overview For <%= session_username %></h1>
         <table border="1">
         <%
             Object[] patients =     gpRemote
-                                    .getGPDetails("gp0", "gp0")
+                                    .getGPDetails(session_username, session_password)
                                     .getPatients()
                                     .toArray();
 
@@ -46,7 +46,8 @@
                     out.println("<td>"+pd.getUsername()+"</td>");
                     out.println("<td>" +
                                    "<a href='viewpatient.jsp?username="+pd.getUsername()+"'>Profile</a> | " +
-                                   "<a href='../measurement/viewmeasurements.jsp?username="+pd.getUsername()+"'>Measurement</a>" +
+                                   "<a href='../measurement/viewmeasurements.jsp?username="+pd.getUsername()+"'>Measurement</a> | " +
+                                   "<a href='../prescription/viewprescriptions.jsp?username="+pd.getUsername()+"'>Prescriptions</a>" +
                                "</td>");
                     out.println("<td>" +
                                    "<a href='editpatient.jsp?username="+pd.getUsername()+"'>Edit Profile</a> | " +

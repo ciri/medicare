@@ -45,8 +45,8 @@
             }
         %>
        <%
-            String gp_name  = "gp0";
-            String gp_password = "gp0";
+            String gp_name      = session_username;
+            String gp_password  = session_password;
             String p_username = request.getParameter("username");
             
             String m_name    = request.getParameter("name");

@@ -1,13 +1,25 @@
-<%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
+<%@ page import="javax.servlet.http.HttpSession"%>
 
 <html>
     <head>
         <title>Medicare v1.0</title>
     </head>
     <body>
+        <%
+            String session_username = "unknown";
+            String session_password = "unknown";
+            String session_role     = "unknown";
+
+            if(session != null) {
+                session_username = (String)session.getAttribute("username");
+                session_password = (String)session.getAttribute("password");
+                session_role     = (String)session.getAttribute("role");
+            }
+        %>
         <center>
           <a href="${pageContext.request.contextPath}/init.jsp">Init</a>
+        | <a href="${pageContext.request.contextPath}/index.jsp">Index</a>
         | <a href="${pageContext.request.contextPath}/gp/patient/addpatient.jsp">Add Patient</a>
         | <a href="${pageContext.request.contextPath}/gp/medication/addmedication.jsp">Add Medication</a>
         | <a href="${pageContext.request.contextPath}/gp/patient/patientoverview.jsp">Patient Overview</a>

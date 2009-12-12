@@ -17,7 +17,7 @@
          <%           
                 out.println(patient.getName()+"<br/>");
                 out.println(patient.getUsername()+"<br/>");
-           if(gpRemote.setPatientInformation("gp0","gp0",patient)) {
+           if(gpRemote.setPatientInformation(session_username, session_password,patient)) {
                 out.println("Succes!<br/>");
                 out.println("<a href='patientoverview.jsp'>Back to overview</a>");
             }

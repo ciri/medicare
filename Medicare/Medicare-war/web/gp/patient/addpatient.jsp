@@ -49,7 +49,7 @@
             String p_password = request.getParameter("password");
 
             out.println("Added : "+p_SSN+","+p_username+","+p_password+"<br/>");
-            if(gpRemote.createPatient("gp0", "gp0", p_SSN, p_username, p_password)) {
+            if(gpRemote.createPatient(session_username, session_password, p_SSN, p_username, p_password)) {
                 out.println("Succes!");
             }
             else
