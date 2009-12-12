@@ -11,16 +11,45 @@
             String session_password = "unknown";
             String session_role     = "unknown";
 
-            if(session != null) {
+            if(session != null && session.getAttribute("username") != null ) {
                 session_username = (String)session.getAttribute("username");
                 session_password = (String)session.getAttribute("password");
                 session_role     = (String)session.getAttribute("role");
             }
+            else {
+                session.setAttribute("username","unknown");
+                session.setAttribute("password","unknown");
+                session.setAttribute("role"   ,"unknown");
+            }
+            if(session_role.equals("gp")) {
         %>
-        <center>
-          <a href="${pageContext.request.contextPath}/init.jsp">Init</a>
-        | <a href="${pageContext.request.contextPath}/index.jsp">Index</a>
-        | <a href="${pageContext.request.contextPath}/gp/patient/addpatient.jsp">Add Patient</a>
-        | <a href="${pageContext.request.contextPath}/gp/medication/addmedication.jsp">Add Medication</a>
-        | <a href="${pageContext.request.contextPath}/gp/patient/patientoverview.jsp">Patient Overview</a>
-        </center>
+                <center>
+                  <a href="${pageContext.request.contextPath}/init.jsp">Init</a>
+                | <a href="${pageContext.request.contextPath}/index.jsp">Index</a>
+                | <a href="${pageContext.request.contextPath}/gp/patient/addpatient.jsp">Add Patient</a>
+                | <a href="${pageContext.request.contextPath}/gp/medication/addmedication.jsp">Add Medication</a>
+                | <a href="${pageContext.request.contextPath}/gp/patient/patientoverview.jsp">Patient Overview</a>
+                </center>
+          <%
+             }
+             else if(session_role.equals("patient")) {
+          %>
+                <center>
+                  <a href="${pageContext.request.contextPath}/init.jsp">Init</a>
+                | <a href="${pageContext.request.contextPath}/index.jsp">Index</a>
+                | <a href="${pageContext.request.contextPath}/patient/welcome.jsp">Welcome</a>
+                | <a href="${pageContext.request.contextPath}/patient/addmeasurement.jsp">Add Measurement</a>
+                | <a href="${pageContext.request.contextPath}/patient/myprescriptions.jsp">My Prescriptions</a>
+                | <a href="${pageContext.request.contextPath}/patient/viewnexttask.jsp">Next Task</a>
+                </center>
+           <%
+              }
+              else {
+           %>
+                <center>
+                  <a href="${pageContext.request.contextPath}/init.jsp">Init</a>
+                | <a href="${pageContext.request.contextPath}/index.jsp">Login</a>
+                </center>
+           <%
+              }
+           %>
