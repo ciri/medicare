@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import util.MeasurementDetails;
+import util.MedicationDetails;
 import util.PatientDetails;
 import util.PrescriptionDetails;
 
@@ -123,6 +124,9 @@ public class PatientFacadeBean implements PatientFacadeLocal {
             pd.setMeasurements(
                     convertMeasurements(p.getMeasurements())
             );
+            pd.setPrescriptions(
+                    convertPrescriptions(p.getPrescriptions())
+            );
             //pd.setTasks(p.getTasks());
             //pd.setAddress(p.getAddress());
             return pd;
@@ -136,6 +140,30 @@ public class PatientFacadeBean implements PatientFacadeLocal {
             );
         }
         return mds;
+    }
+    private List<PrescriptionDetails> convertPrescriptions(Collection<Prescription> measurements) {
+        List<PrescriptionDetails> pds = new ArrayList<PrescriptionDetails>();
+        for(Prescription p : measurements) {
+            Medication m = p.getMedication();
+            pds.add(
+                new PrescriptionDetails(
+                    p.getUnit(),
+                    p.getFrequency(),
+                    p.getStarttime(),
+                    p.getEndtime(),
+                    p.isFixed(),
+                    convertMedication(m)
+                )
+            );
+        }
+        return pds;
+    }
+    private MedicationDetails convertMedication(Medication m) {
+        return new MedicationDetails(
+                m.getName(),
+                m.getStandarddose(),
+                m.getUnitdose()
+        );
     }
     /********************** PERSISTENTIEMETHODES ******************************/
     public void create(Patient patient) {
