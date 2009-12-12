@@ -2,9 +2,12 @@ package entity.patient;
 
 import entity.gp.GP;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,8 +23,10 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
     @NamedQuery(name = "entity.patient.Patient.findAllPatients",
                 query = "SELECT p FROM Patient p"),
-    @NamedQuery(name = "entity.patient.Patient.findPatientByName",
-                query = "SELECT p FROM Patient p WHERE p.name = :name")
+    @NamedQuery(name = "entity.patient.Patient.findPatientByUsername",
+                query = "SELECT p FROM Patient p WHERE p.username = :username"),
+    @NamedQuery(name = "entity.patient.Patient.findPatientBySSN",
+                query = "SELECT p FROM Patient p WHERE p.SSN = :SSN")
 })
 
 public class Patient implements Serializable {
@@ -31,19 +36,42 @@ public class Patient implements Serializable {
     private Long id;
 
     @Column(unique=true)
+    private String SSN;
+    @Column(unique=true)
     private String username;
     @Column
     private String password;
-    @Column(unique=true)
+
+    @Column
     private String name;
-    @ManyToMany(mappedBy = "patients")
-    private List<GP> GPs;
+    
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "patients")
+    private Collection<GP> gps;
     
     public Patient() { }
-    public Patient(String username, String password) {
+    public Patient(String SSN, String username, String password) {
+        setSSN(SSN);
         setName(username);
         setUsername(username);
         setPassword(password);
+    }
+
+    /**
+     * Get the value of SSN
+     *
+     * @return the value of SSN
+     */
+    public String getSSN() {
+        return SSN;
+    }
+
+    /**
+     * Set the value of SSN
+     *
+     * @param SSN new value of SSN
+     */
+    public void setSSN(String SSN) {
+        this.SSN = SSN;
     }
 
     /**
@@ -105,8 +133,8 @@ public class Patient implements Serializable {
      *
      * @return the value of gps
      */
-    public List<GP> getGPs() {
-        return GPs;
+    public Collection<GP> getGps() {
+        return gps;
     }
 
     /**
@@ -114,8 +142,8 @@ public class Patient implements Serializable {
      *
      * @param GPs new value of gps
      */
-    public void setGPs(List<GP> GPs) {
-        this.GPs = GPs;
+    public void setGPs(Collection<GP> gps) {
+        this.gps = gps;
     }
     public Long getId() {
         return id;

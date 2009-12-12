@@ -7,15 +7,15 @@ public class GPDetails implements Serializable {
 
     private Long id;
     private String name;
-    private Collection<String> patients;
+    private Collection<PatientDetails> patients;
 
-    public GPDetails(Long id, String name, Collection<String> patients) {
+    public GPDetails(Long id, String name, Collection<PatientDetails> patients) {
         this.id = id;
         this.name = name;
         this.patients = patients;
     }
 
-    public Collection<String> getPatients() {
+    public Collection<PatientDetails> getPatients() {
         return patients;
     }
 

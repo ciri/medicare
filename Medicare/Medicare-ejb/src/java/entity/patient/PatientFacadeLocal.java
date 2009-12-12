@@ -5,6 +5,7 @@
 
 package entity.patient;
 
+import java.util.List;
 import javax.ejb.Local;
 import util.PatientDetails;
 
@@ -14,7 +15,8 @@ import util.PatientDetails;
  */
 @Local
 public interface PatientFacadeLocal {
-    public void createPatient(String username, String password);
+    public boolean createPatient(String SSN, String username, String password);
     public PatientDetails getPatient(String patient_name);
     public boolean editPatient(PatientDetails patient);
+    public List<PatientDetails> getAllPatients();
 }

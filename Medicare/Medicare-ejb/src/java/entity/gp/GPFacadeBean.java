@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import util.GPDetails;
+import util.PatientDetails;
 
 /**
  *
@@ -39,9 +40,9 @@ public class GPFacadeBean implements GPFacadeLocal {
             return false;
     }
 
-    public boolean addPatient(String gp_name, String p_name) {
+    public boolean addPatient(String gp_name, String p_username) {
         GP gp = findByName(gp_name);
-        gp.addPatient(findPatientByName(p_name));
+        gp.addPatient(findPatientByName(p_username));
         edit(gp);
         return true;
     }
@@ -60,8 +61,8 @@ public class GPFacadeBean implements GPFacadeLocal {
             return null;
         }
     }
-    public Patient findPatientByName(String name) {
-        List<Patient> gps = (List<Patient>) em.createNamedQuery("entity.patient.Patient.findPatientByName").setParameter("name", name).getResultList();
+    public Patient findPatientByName(String username) {
+        List<Patient> gps = (List<Patient>) em.createNamedQuery("entity.patient.Patient.findPatientByUsername").setParameter("username", username).getResultList();
         if (gps.size() == 1) {
             return gps.get(0);
         } else if (gps.size() > 1) {
@@ -75,11 +76,15 @@ public class GPFacadeBean implements GPFacadeLocal {
         if (gp == null)
             return null;
         else {
-            Collection<String> patients = new ArrayList<String>();
+            Collection<PatientDetails> patients = new ArrayList<PatientDetails>();
 
             if(includePatientList) {
-                for (Object patient : gp.getPatients())
-                    patients.add(((Patient)patient).getName());
+                for (Object patient : gp.getPatients()) {
+                    Patient p = (Patient) patient;
+                    patients.add(new PatientDetails(
+                        p.getId(), p.getSSN(),p.getUsername()
+                    ));
+                }
             }
             return new GPDetails(gp.getId(),gp.getName(), patients);
         }

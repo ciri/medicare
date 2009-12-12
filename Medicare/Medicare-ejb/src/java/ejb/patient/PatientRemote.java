@@ -22,5 +22,5 @@ public interface PatientRemote {
     boolean removeAccount(String username, String password);
     boolean isValidAccount(String username, String password);*/
 
-    boolean addPatient(String username, String password);
+    boolean addPatient(String SSN, String username, String password);
 }

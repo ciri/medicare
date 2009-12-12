@@ -5,6 +5,7 @@
 
 package ejb.gp;
 
+import java.util.List;
 import javax.ejb.Remote;
 import util.GPDetails;
 import util.PatientDetails;
@@ -19,9 +20,14 @@ public interface GPRemote {
     boolean isValidAccount(String username, String password);*/
 
     boolean addGP(String username, String password);
-    boolean addPatient(String gp_name, String gp_password, String p_name);
     GPDetails getGPDetails(String gp_name,String gp_password);
 
-    PatientDetails getPatientDetails(String gp_name,String gp_password,String patient_name);
+    /* Patient operations */
+    boolean addPatient(String gp_name, String gp_password, String p_name);
+    boolean createPatient(String gp_username, String gp_password,
+                          String p_SSN, String p_username, String p_password);
     boolean setPatientInformation(String gp_name,String gp_password,PatientDetails patient);
+
+    PatientDetails getPatientDetails(String gp_name,String gp_password,String patient_name);
+    List<PatientDetails> getAllPatientDetails(String gp_name, String gp_password);
 }

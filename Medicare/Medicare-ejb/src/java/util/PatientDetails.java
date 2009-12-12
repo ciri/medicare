@@ -1,31 +1,38 @@
 package util;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 
 public class PatientDetails implements Serializable {
 
     private Long id;
-    private String name;
+
+    private String SSN;
     private String username;
-    private List<String> gps;
+
+    private String name;
+    private Collection<String> gps;
 
     public PatientDetails(){};
-    public PatientDetails(Long id, String name,String username, List<String> gps) {
+    
+    public PatientDetails(Long id, String SSN,String username) {
         this.id = id;
-        this.name = name;
+        this.SSN = SSN;
         this.username = username;
-        this.gps = gps;
     }
 
-    public List<String> getGps() {
+    public Collection<String> getGps() {
         return gps;
     }
-
-    public void setGps(List gps) {
+    public void setGps(Collection gps) {
         this.gps = gps;
     }
-
+    public String getSSN() {
+        return SSN;
+    }
+    public void setSSN(String SSN) {
+        this.SSN = SSN;
+    }
     public String getName() {
         return name;
     }
