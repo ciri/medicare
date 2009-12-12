@@ -13,7 +13,7 @@
          %>
          <%
             String viewname = request.getParameter("username");
-            PatientDetails pd = gpRemote.getPatientDetails("gp0","gp0",viewname);
+            PatientDetails pd = gpRemote.getPatientDetails(session_username, session_password,viewname);
 
             if(pd != null) {
          %>

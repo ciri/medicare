@@ -1,17 +1,15 @@
-<%-- 
-    Document   : index
-    Created on : Dec 12, 2009, 2:07:57 AM
-    Author     : ciri
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
-
-
-<html>
-    <%@include file="jspf/header.jspf" %>
+<%@include file="jspf/header.jspf" %>
         <h1>Index</h1>
-        Placeholder ...
+            Login as user : <a href="index.jsp?login=patient0&role=patient">patient0</a>
+            Login as admin: <a href="index.jsp?login=gp0&role=gp">gp0</a>
+        <%
+            if(request != null && session != null && request.getParameter("login") != null) {
+
+                out.println("Setting username to "+request.getParameter("login"));
+
+                session.setAttribute("username", request.getParameter("login"));
+                session.setAttribute("password", request.getParameter("login"));
+                session.setAttribute("role"    , request.getParameter("role"));
+            }
+        %>
     <%@include file="jspf/footer.jspf" %>
-</html>

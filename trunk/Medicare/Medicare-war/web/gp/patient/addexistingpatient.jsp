@@ -27,7 +27,7 @@
         String username = request.getParameter("username");
         if(username == null ) {
          out.println("<table border='1'>");
-            List<PatientDetails> patients =     gpRemote.getAllPatientDetails("gp0", "gp0");
+            List<PatientDetails> patients =     gpRemote.getAllPatientDetails(session_username, session_password);
             out.println("<thead>");
                 out.println("<th>Nr</th>");
                 out.println("<th>SSN</th>");
@@ -46,7 +46,7 @@
             out.println("</table>");
         }
         else {
-            if(gpRemote.addPatient("gp0", "gp0", username)) {
+            if(gpRemote.addPatient(session_username, session_password, username)) {
                 out.println("The patient was succesfully registered to yourself.");
             }
             else {
