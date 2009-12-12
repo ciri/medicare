@@ -4,11 +4,11 @@
   <context-root>/Medicare-war</context-root>
   <security-role-mapping>
     <role-name>patient</role-name>
-    <group-name>PATIENT_ROLE</group-name>
+    <group-name>patient</group-name>
   </security-role-mapping>
   <security-role-mapping>
     <role-name>gp</role-name>
-    <group-name>ADMIN_ROLE</group-name>
+    <group-name>gp</group-name>
   </security-role-mapping>
   <class-loader delegate="true"/>
   <jsp-config>
