@@ -153,15 +153,6 @@ exists or setup the property manually. For example like this:
                 <isset property="build.deploy.on.save"/>
             </not>
         </condition>
-        <ant antfile="${project.Medicare-app-client}/build.xml" inheritall="false" target="dist-ear">
-            <property location="${build.dir}" name="dist.ear.dir"/>
-            <property name="deploy.on.save" value="${build.deploy.on.save}"/>
-        </ant>
-        <condition property="build.deploy.on.save" value="false">
-            <not>
-                <isset property="build.deploy.on.save"/>
-            </not>
-        </condition>
         <ant antfile="${project.Medicare-ejb}/build.xml" inheritall="false" target="dist-ear">
             <property location="${build.dir}" name="dist.ear.dir"/>
             <property name="deploy.on.save" value="${build.deploy.on.save}"/>
@@ -188,7 +179,6 @@ exists or setup the property manually. For example like this:
     </target>
     <target depends="init,deps-jar,pre-pre-compile,pre-compile" if="do.package.not.directory.deploy" name="-do-compile-deps">
         <copyfiles files="${reference.Medicare-war.dist-ear}" todir="${build.dir}//"/>
-        <copyfiles files="${reference.Medicare-app-client.j2ee-module-car}" todir="${build.dir}//"/>
         <copyfiles files="${reference.Medicare-ejb.dist-ear}" todir="${build.dir}//"/>
     </target>
     <target name="post-compile">
@@ -266,7 +256,6 @@ exists or setup the property manually. For example like this:
     </target>
     <target name="-run-deploy-am" unless="no.deps">
         <!-- Task to deploy to the Access Manager runtime. -->
-        <ant antfile="${project.Medicare-app-client}/build.xml" inheritall="false" target="-run-deploy-am"/>
         <ant antfile="${project.Medicare-ejb}/build.xml" inheritall="false" target="-run-deploy-am"/>
         <ant antfile="${project.Medicare-war}/build.xml" inheritall="false" target="-run-deploy-am"/>
     </target>
@@ -353,39 +342,6 @@ exists or setup the property manually. For example like this:
     <target depends="init" if="app.client" name="run-ac">
         <antcall target="run-${app.client}"/>
     </target>
-    <target depends="-tool-Medicare-app-client,-java-Medicare-app-client" name="run-Medicare-app-client"/>
-    <target depends="-as-retrieve-option-workaround" if="j2ee.appclient.mainclass.args" name="-tool-Medicare-app-client" unless="j2ee.clientName">
-        <java classname="${j2ee.appclient.tool.mainclass}" fork="true">
-            <jvmarg line="${j2ee.appclient.tool.jvmoptions}"/>
-            <jvmarg line="${j2ee.appclient.jvmoptions.param}"/>
-            <arg line="${j2ee.appclient.tool.args}"/>
-            <arg line="-client ${client.jar}"/>
-            <arg line="${j2ee.appclient.mainclass.tool.param}"/>
-            <arg line="${application.args.param}"/>
-            <classpath>
-                <path path="${j2ee.platform.classpath}:${j2ee.appclient.tool.runtime}"/>
-            </classpath>
-            <syspropertyset>
-                <propertyref prefix="run-sys-prop."/>
-                <mapper from="run-sys-prop.*" to="*" type="glob"/>
-            </syspropertyset>
-        </java>
-    </target>
-    <target if="j2ee.clientName" name="-java-Medicare-app-client" unless="j2ee.appclient.mainclass.args">
-        <java classname="${main.class}" fork="true">
-            <jvmarg line="${j2ee.appclient.tool.jvmoptions}"/>
-            <jvmarg line="-Dj2ee.clientName=${app.client}"/>
-            <jvmarg line="${j2ee.appclient.jvmoptions.param}"/>
-            <arg line="${application.args.param}"/>
-            <classpath>
-                <path path="${jar.content.additional}:${j2ee.platform.classpath}:${j2ee.appclient.tool.runtime}"/>
-            </classpath>
-            <syspropertyset>
-                <propertyref prefix="run-sys-prop."/>
-                <mapper from="run-sys-prop.*" to="*" type="glob"/>
-            </syspropertyset>
-        </java>
-    </target>
     <target if="j2ee.appclient.mainclass.args" name="-as-retrieve-option-workaround" unless="j2ee.clientName">
         <property name="client.jar" value="${dist.dir}/MedicareClient.jar"/>
         <sleep seconds="3"/>
@@ -466,26 +422,10 @@ exists or setup the property manually. For example like this:
         <nbdeploy clientModuleUri="${client.module.uri}" clientUrlPart="${client.urlPart}" debugmode="false"/>
         <antcall target="debug-${app.client}"/>
     </target>
-    <target depends="-debug-tool-Medicare-app-client,-debug-java-Medicare-app-client" name="debug-Medicare-app-client"/>
-    <target depends="init,-as-retrieve-option-workaround" if="j2ee.appclient.mainclass.args" name="-debug-tool-Medicare-app-client" unless="j2ee.clientName">
-        <ear2:debug-appclient args="-client ${client.jar} ${j2ee.appclient.tool.args} ${j2ee.appclient.mainclass.tool.param} ${application.args.param}" mainclass="${j2ee.appclient.tool.mainclass}"/>
-    </target>
-    <target if="j2ee.clientName" name="-debug-java-Medicare-app-client" unless="j2ee.appclient.mainclass.args">
-        <ear2:debug-appclient args="${application.args.param}" classpath="${jar.content.additional}" mainclass="${main.class}"/>
-    </target>
     <!--
     CLEANUP SECTION
     -->
     <target depends="init" name="deps-clean" unless="no.deps">
-        <condition property="build.deploy.on.save" value="false">
-            <not>
-                <isset property="build.deploy.on.save"/>
-            </not>
-        </condition>
-        <ant antfile="${project.Medicare-app-client}/build.xml" inheritall="false" target="clean-ear">
-            <property location="${build.dir}" name="dist.ear.dir"/>
-            <property name="deploy.on.save" value="${build.deploy.on.save}"/>
-        </ant>
         <condition property="build.deploy.on.save" value="false">
             <not>
                 <isset property="build.deploy.on.save"/>
