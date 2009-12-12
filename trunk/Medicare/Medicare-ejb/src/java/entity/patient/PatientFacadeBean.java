@@ -69,7 +69,13 @@ public class PatientFacadeBean implements PatientFacadeLocal {
         edit(pat);
         return true;
     }
-
+    public boolean isValid(String username, String password) {
+        Patient p = findByUsername(username);
+        if (p != null)
+            return p.getPassword().equals(password);
+        else
+            return false;
+    }
     /************************** HULPMETHODES *********************************/
     public Patient findById(Long id) {
         return em.find(Patient.class, id);
@@ -116,7 +122,7 @@ public class PatientFacadeBean implements PatientFacadeLocal {
             }
             PatientDetails pd = new PatientDetails(p.getId(),p.getSSN(),p.getUsername());
             pd.setName(p.getName());
-            pd.setGps(p.getGps());
+            pd.setGps(gps);
             pd.setBirthday(p.getBirthday());
             pd.setBloodgroup(p.getBloodgroup());
             pd.setFirstconsult(pd.getFirstconsult());
@@ -176,5 +182,4 @@ public class PatientFacadeBean implements PatientFacadeLocal {
     public void remove(Patient patient) {
         em.remove(em.merge(patient));
     }
-
 }
