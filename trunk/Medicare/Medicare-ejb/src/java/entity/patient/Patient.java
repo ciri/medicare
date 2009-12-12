@@ -43,9 +43,9 @@ public class Patient implements Serializable {
     private Long id;
 
     //Required
-    @Column(unique=true)
+    @Column(unique=true, nullable=false)
     private String SSN;
-    @Column(unique=true)
+    @Column(unique=true,  nullable=false)
     private String username;
     @Column
     private String password;
