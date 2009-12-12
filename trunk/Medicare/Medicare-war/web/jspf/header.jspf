@@ -1,0 +1,13 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+
+<html>
+    <head>
+        <title>Medicare v1.0</title>
+    </head>
+    <body>
+        <center>
+          <a href="${pageContext.request.contextPath}/init.jsp">Init</a>
+        | <a href="${pageContext.request.contextPath}/gp/patient/addpatient.jsp">Add Patient</a>
+        | <a href="${pageContext.request.contextPath}/gp/patient/patientoverview.jsp">Patient Overview</a>
+        </center>
