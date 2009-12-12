@@ -47,6 +47,9 @@
                         %>
                     </td>
                 </tr>
+                <tr>
+                    <td><a href="../measurement/viewmeasurements.jsp?username=<%= pd.getUsername() %>">View measurements</a></td>
+                </tr>
             </table>
          <% }
             else {

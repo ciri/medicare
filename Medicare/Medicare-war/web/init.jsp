@@ -46,6 +46,7 @@
                 else
                     out.print("Error adding patient "+i+" to gp0<br/>");
              }
+
         %>
 
 <%@include file="jspf/footer.jspf" %>

@@ -36,7 +36,7 @@
                 out.println("<th>SSN</th>");
                 out.println("<th>Username</th>");
                 out.println("<th>View</th>");
-                out.println("<th>Edit</th>");
+                out.println("<th>Modify</th>");
             out.println("</thead>");
             for (int i=0;i<patients.length;i++) {
                 PatientDetails pd = (PatientDetails) patients[i];
@@ -44,8 +44,15 @@
                     out.println("<td>"+i+"</td>");
                     out.println("<td>"+pd.getSSN()+"</td>");
                     out.println("<td>"+pd.getUsername()+"</td>");
-                    out.println("<td><a href='viewpatient.jsp?username="+pd.getUsername()+"'>View Patient</a></td>");
-                    out.println("<td><a href='editpatient.jsp?username="+pd.getUsername()+"'>Edit Patient</a></td>");
+                    out.println("<td>" +
+                                   "<a href='viewpatient.jsp?username="+pd.getUsername()+"'>Profile</a> | " +
+                                   "<a href='../measurement/viewmeasurements.jsp?username="+pd.getUsername()+"'>Measurement</a>" +
+                               "</td>");
+                    out.println("<td>" +
+                                   "<a href='editpatient.jsp?username="+pd.getUsername()+"'>Edit Profile</a> | " +
+                                   "<a href='../measurement/addmeasurement.jsp?username="+pd.getUsername()+"'>Add measurement</a> | " +
+                                   "<a href='../prescription/addprescription.jsp?username="+pd.getUsername()+"'>Add prescription</a>"+
+                                "</td>");
                 out.println("</tr>");
             }
             
