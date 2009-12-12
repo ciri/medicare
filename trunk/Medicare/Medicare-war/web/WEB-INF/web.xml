@@ -8,4 +8,12 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
         </welcome-file-list>
+    <security-role>
+        <description/>
+        <role-name>patient</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>gp</role-name>
+    </security-role>
     </web-app>
