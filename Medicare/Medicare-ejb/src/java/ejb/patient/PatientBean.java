@@ -4,9 +4,11 @@
  */
 package ejb.patient;
 
+import entity.measurement.MeasurementFacadeLocal;
 import entity.patient.PatientFacadeLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import util.MeasurementDetails;
 
 /**
  *
@@ -18,6 +20,9 @@ public class PatientBean implements PatientRemote {
     @EJB
     private PatientFacadeLocal patientFacadeBean;
 
+    @EJB
+    private MeasurementFacadeLocal measurementFacadeBean;
+    
     public boolean addPatient(String SSN, String username, String password) {
         try {
             patientFacadeBean.createPatient(SSN, username, password);
@@ -25,6 +30,15 @@ public class PatientBean implements PatientRemote {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public boolean addMeasurement(String username, String password, MeasurementDetails md) {
+        if(patientFacadeBean.isValid(username, password)) {
+            patientFacadeBean.addMeasurement(username, md);
+            return true;
+        }
+        else
+            return false;
     }
 }
 

@@ -24,4 +24,6 @@ public interface PatientFacadeLocal {
     
     public void addMeasurement(String patient_name, MeasurementDetails md);
     public boolean addPrescription(String p_username, PrescriptionDetails pd);
+
+    public boolean isValid(String username, String password);
 }
