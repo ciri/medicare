@@ -8,26 +8,37 @@ package ejb.gp;
 import java.util.List;
 import javax.ejb.Remote;
 import util.GPDetails;
+import util.MeasurementDetails;
+import util.MedicationDetails;
 import util.PatientDetails;
+import util.PrescriptionDetails;
 
 @Remote
 public interface GPRemote {
-
-    /*AccountDetails getAccountInformation(String username, String password);
-    boolean addFriend(String username, String password, String friend);
-    boolean removeFriend(String username, String password, String friend);
-    boolean removeAccount(String username, String password);
-    boolean isValidAccount(String username, String password);*/
-
     boolean addGP(String username, String password);
     GPDetails getGPDetails(String gp_name,String gp_password);
 
     /* Patient operations */
-    boolean addPatient(String gp_name, String gp_password, String p_name);
+    boolean addPatient(String gp_name, String gp_password, String p_username);
     boolean createPatient(String gp_username, String gp_password,
                           String p_SSN, String p_username, String p_password);
     boolean setPatientInformation(String gp_name,String gp_password,PatientDetails patient);
 
-    PatientDetails getPatientDetails(String gp_name,String gp_password,String patient_name);
+    PatientDetails getPatientDetails(String gp_name,String gp_password,String p_username);
     List<PatientDetails> getAllPatientDetails(String gp_name, String gp_password);
+
+    /* Measurement operations */
+    boolean addMeasurement(String gp_name, String gp_password, String p_username, MeasurementDetails md);
+    List<String> getMeasurementTypes(String gp_name,String gp_password, String p_username);
+
+    /* Medication operations */
+    boolean addMedication(String gp_name, String gp_password, MedicationDetails md);
+    List<MedicationDetails> getAllMedications(String gp_name, String gp_password);
+    MedicationDetails getMedication(String gp_name, String gp_password, String m);
+    
+    /* Prescription operations */
+    boolean addPrescription(String gp_name, String gp_password,
+                            String p_username,
+                            PrescriptionDetails pd
+    );
 }

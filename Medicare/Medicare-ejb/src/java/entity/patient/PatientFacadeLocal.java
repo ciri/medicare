@@ -7,7 +7,9 @@ package entity.patient;
 
 import java.util.List;
 import javax.ejb.Local;
+import util.MeasurementDetails;
 import util.PatientDetails;
+import util.PrescriptionDetails;
 
 /**
  *
@@ -19,4 +21,7 @@ public interface PatientFacadeLocal {
     public PatientDetails getPatient(String patient_name);
     public boolean editPatient(PatientDetails patient);
     public List<PatientDetails> getAllPatients();
+    
+    public void addMeasurement(String patient_name, MeasurementDetails md);
+    public boolean addPrescription(String p_username, PrescriptionDetails pd);
 }
