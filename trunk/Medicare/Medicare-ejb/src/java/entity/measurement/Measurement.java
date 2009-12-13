@@ -28,8 +28,6 @@ public class Measurement implements Serializable {
     private Long id;
 
     @Column
-    private String name;
-    @Column
     private String type;
     @Column
     private float measuredvalue;
@@ -40,7 +38,6 @@ public class Measurement implements Serializable {
     public Measurement() {}
 
     public Measurement(MeasurementDetails md) {
-        setName(md.getName());
         setType(md.getType());
         setMeasuredvalue(md.getMeasuredvalue());
         setMeasurementtime(md.getMeasurementtime());
@@ -97,24 +94,6 @@ public class Measurement implements Serializable {
      */
     public void setType(String type) {
         this.type = type;
-    }
-
-    /**
-     * Get the measuredvalue of name
-     *
-     * @return the measuredvalue of name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Set the measuredvalue of name
-     *
-     * @param name new measuredvalue of name
-     */
-    public void setName(String name) {
-        this.name = name;
     }
 
 

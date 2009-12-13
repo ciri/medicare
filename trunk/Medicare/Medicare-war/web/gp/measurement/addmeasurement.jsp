@@ -15,16 +15,12 @@
                 <input type="hidden" name="username" value="<%= request.getParameter("username") %>"/>
             <table>
                 <tr>
-                    <td>Name</td>
-                    <td><input type="text" name="name" value="glucose" /></td>
-                </tr>
-                <tr>
                     <td>Type</td>
-                    <td><input type="text" name="type" value="default" /></td>
+                    <td><input type="text" name="type" value="glucose" /></td>
                 </tr>
                 <tr>
                     <td>Value</td>
-                    <td><input type="text" name="value" value="0" /></td>
+                    <td><input type="text" name="value" value="80" /></td>
                 </tr>
 
                 <tr>
@@ -45,15 +41,13 @@
             }
         %>
        <%
-            String gp_name      = session_username;
             String p_username = request.getParameter("username");
             
-            String m_name    = request.getParameter("name");
             String m_type    = request.getParameter("type");
             String m_value   = request.getParameter("value");
 
 
-            MeasurementDetails md = new MeasurementDetails(m_name,m_type,m_value);
+            MeasurementDetails md = new MeasurementDetails(m_type,m_value);
 
             if(gpRemote.addMeasurement(p_username, md)) {
                 out.println("Succes!");

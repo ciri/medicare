@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class TaskDetails implements Serializable,Comparable {
     private Long id;
-    private int dose;
+    private double dose;
     private String status;
     private Date tasktime;
     private PrescriptionDetails prescription;
@@ -48,7 +48,7 @@ public class TaskDetails implements Serializable,Comparable {
      *
      * @return the value of dose
      */
-    public int getDose() {
+    public double getDose() {
         return dose;
     }
 
@@ -57,7 +57,7 @@ public class TaskDetails implements Serializable,Comparable {
      *
      * @param dose new value of dose
      */
-    public void setDose(int dose) {
+    public void setDose(double dose) {
         this.dose = dose;
     }
 

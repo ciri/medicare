@@ -15,7 +15,7 @@
             if(username != null) {
                 List<PrescriptionDetails> prescriptions = gpRemote.getPrescriptions(username);
                 if(prescriptions == null || prescriptions.size() == 0)
-                    out.println("No prescriptions of been recorded for this user yet ...");
+                    out.println("This patient doesn't have any prescriptions yet.");
                 else {
                  %>
                         <p>Viewing prescriptions for <%= username %>.</p>

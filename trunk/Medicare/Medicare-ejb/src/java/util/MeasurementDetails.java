@@ -9,20 +9,18 @@ import java.util.Date;
  */
 public class MeasurementDetails implements Serializable {
 
-    private String name;
     private String type;
     private float measuredvalue;
     private Date measurementtime;
 
     public MeasurementDetails() {}
-    public MeasurementDetails(String name, String type, float measuredvalue) {
-        this(name,type,measuredvalue,new Date());
+    public MeasurementDetails(String type, float measuredvalue) {
+        this(type,measuredvalue,new Date());
     }
-    public MeasurementDetails(String name, String type, String measuredvalue) {
-        this(name,type,Float.parseFloat(measuredvalue),new Date());
+    public MeasurementDetails(String type, String measuredvalue) {
+        this(type,Float.parseFloat(measuredvalue),new Date());
     }
-    public MeasurementDetails(String name, String type, float measuredvalue, Date measurementtime) {
-        setName(name);
+    public MeasurementDetails( String type, float measuredvalue, Date measurementtime) {
         setType(type);
         setMeasuredvalue(measuredvalue);
         setMeasurementtime(measurementtime);
@@ -80,23 +78,4 @@ public class MeasurementDetails implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
-
-    /**
-     * Get the value of name
-     *
-     * @return the value of name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Set the value of name
-     *
-     * @param name new value of name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }

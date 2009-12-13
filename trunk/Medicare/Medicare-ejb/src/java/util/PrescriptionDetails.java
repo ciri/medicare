@@ -43,7 +43,7 @@ public class PrescriptionDetails implements Serializable {
          setStarttime(stime);
          setEndtime(etime);
          setFixed(Boolean.parseBoolean(fixed));
-         setMedication(new MedicationDetails(medication,0,0));
+         setMedication(new MedicationDetails(medication,0,"milligram"));
          addTasks();
     }
     public PrescriptionDetails(int unit, int frequency, Date starttime, Date endtime, boolean fixed, MedicationDetails medication,List<TaskDetails> taskDetails) {

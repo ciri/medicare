@@ -42,10 +42,10 @@
             }
 
             //Geef patient een taak
-            MedicationDetails   md = new MedicationDetails("ibuprofen","1","200");
-            MedicationDetails   md2 = new MedicationDetails("ibuprofenXtreme","2","400");
-            PrescriptionDetails pd = new PrescriptionDetails("1","2","13-12-2009","15-12-2009","true","ibuprofen");
-            PrescriptionDetails pd2 = new PrescriptionDetails("1","2","13-12-2009","15-12-2009","false","ibuprofenXtreme");
+            MedicationDetails   md  = new MedicationDetails("Neurofen 100","200","100");
+            MedicationDetails   md2 = new MedicationDetails("Neurofen 500","500","500");
+            PrescriptionDetails pd  = new PrescriptionDetails("1","2","13-12-2009","15-12-2009","true",md.getName());
+            PrescriptionDetails pd2 = new PrescriptionDetails("1","2","13-12-2009","15-12-2009","true",md2.getName());
             gpRemote.addMedication(md);
             gpRemote.addMedication(md2);
             gpRemote.addPrescription( "patient0", pd);

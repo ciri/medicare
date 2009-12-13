@@ -132,7 +132,7 @@ public class PatientFacadeBean implements PatientFacadeLocal {
             PatientDetails pd = new PatientDetails(p.getId(),p.getSSN(),p.getUsername());
             pd.setName(p.getName());
             pd.setGps(gps);
-            pd.setBirthday(p.getBirthday());
+            pd.setBirthdate(p.getBirthdate());
             pd.setBloodgroup(p.getBloodgroup());
             pd.setFirstconsult(pd.getFirstconsult());
             pd.setLastconsult(p.getLastconsult());
@@ -151,7 +151,7 @@ public class PatientFacadeBean implements PatientFacadeLocal {
         List<MeasurementDetails> mds = new ArrayList<MeasurementDetails>();
         for(Measurement m : measurements) {
             mds.add(
-                new MeasurementDetails(m.getName(),m.getType(),m.getMeasuredvalue())
+                new MeasurementDetails(m.getType(),m.getMeasuredvalue())
             );
         }
         return mds;
