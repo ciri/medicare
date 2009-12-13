@@ -27,7 +27,7 @@ public class GPFacadeBean implements GPFacadeLocal {
     /************************** FACADE-METHODES *******************************/
 
     public void createGp(String name, String password) {
-        if (findByName(name) != null)  throw new IllegalArgumentException();
+        if (findByName(name) != null)  return;
         GP gp = new GP(name, password);
         create(gp);
     }

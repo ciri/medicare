@@ -19,7 +19,7 @@ import util.MeasurementDetails;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "entity.measurement.Measurement.findTypes",
-                query = "SELECT m.type FROM Measurement m")
+                query = "SELECT DISTINCT m.type FROM Measurement m")
 })
 public class Measurement implements Serializable {
     private static final long serialVersionUID = 1L;
