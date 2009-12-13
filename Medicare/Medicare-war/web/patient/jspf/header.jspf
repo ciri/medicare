@@ -1,0 +1,18 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ page import="javax.servlet.http.HttpSession"%>
+
+<html>
+    <head>
+        <title>Medicare v1.0</title>
+    </head>
+    <body>
+        <%
+            String session_username = request.getUserPrincipal().getName();
+        %>
+                <center>
+                  <a href="${pageContext.request.contextPath}/init.jsp">Init</a>
+                | <a href="${pageContext.request.contextPath}/patient/index.jsp">Welcome</a>
+                | <a href="${pageContext.request.contextPath}/patient/addmeasurement.jsp">Add Measurement</a>
+                | <a href="${pageContext.request.contextPath}/patient/myprescriptions.jsp">My Prescriptions</a>
+                | <a href="${pageContext.request.contextPath}/patient/viewnexttask.jsp">Next Task</a>
+                </center>

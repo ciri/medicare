@@ -1,9 +1,9 @@
-<%@include file="../../jspf/header.jspf" %>
+<%@include file="../jspf/header.jspf" %>
 <%@ page import="util.PatientDetails,java.util.List"%>
 
         <h1>View Patient</h1>
-        <%@include file="../../jspf/patientremote.jspf" %>
-        <%@include file="../../jspf/gpremote.jspf" %>
+        <%@include file="../jspf/patientremote.jspf" %>
+        <%@include file="../jspf/gpremote.jspf" %>
 
         <%!
             public void jspInit() {
@@ -60,4 +60,4 @@
             }
             %>
 
-<%@include file="../../jspf/footer.jspf" %>
+<%@include file="../jspf/footer.jspf" %>

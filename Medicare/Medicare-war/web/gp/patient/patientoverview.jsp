@@ -1,34 +1,19 @@
-<%@include file="../../jspf/header.jspf" %>
+<%@include file="../jspf/header.jspf" %>
 <%@ page import="javax.naming.*,ejb.gp.GPRemote,util.GPDetails,util.PatientDetails"%>
 
-<%@include file="../../jspf/patientremote.jspf" %>
-<%@include file="../../jspf/gpremote.jspf" %>
+<%@include file="../jspf/gpremote.jspf" %>
 
     <%!
     public void jspInit() {
-        patientRemote = getPatientRemote();
         gpRemote = getGPRemote();
     }
     %>
-       
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Initialize</title>
-    </head>
-    <body>
         <h1>Patient Overview For <%= session_username %></h1>
         <table border="1">
         <%
-            Object[] patients =     gpRemote
-                                    .getGPDetails(session_username, session_password)
-                                    .getPatients()
-                                    .toArray();
+            Object[] patients =     gpRemote.getGPDetails(session_username)
+                                            .getPatients()
+                                            .toArray();
 
 
             out.println("<thead>");
@@ -59,4 +44,4 @@
             
         %>
         </table>
-<%@include file="../../jspf/footer.jspf" %>
+<%@include file="../jspf/footer.jspf" %>

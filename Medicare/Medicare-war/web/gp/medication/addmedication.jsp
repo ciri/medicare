@@ -1,4 +1,4 @@
-<%@include file="../../jspf/header.jspf" %>
+<%@include file="../jspf/header.jspf" %>
 <%@ page import="javax.naming.*,util.MedicationDetails"%>
 <%
    String posted = null;
@@ -38,7 +38,7 @@
     }
     else {
        %>
-       <%@include file="../../jspf/gpremote.jspf" %>
+       <%@include file="../jspf/gpremote.jspf" %>
        <%!
             public void jspInit() {
                 gpRemote = getGPRemote();
@@ -55,11 +55,11 @@
 
             MedicationDetails md = new MedicationDetails(m_name,m_sdose,m_udose);
 
-            if(gpRemote.addMedication(gp_name, gp_password, md)) {
+            if(gpRemote.addMedication( md )) {
                 out.println("Succes!");
             }
             else
                 out.println("Failed ...");
     }
 %>
-<%@include file="../../jspf/footer.jspf" %>
+<%@include file="../jspf/footer.jspf" %>

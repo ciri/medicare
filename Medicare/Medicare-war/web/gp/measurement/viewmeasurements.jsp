@@ -1,12 +1,10 @@
-<%@include file="../../jspf/header.jspf" %>
+<%@include file="../jspf/header.jspf" %>
 <%@ page import="util.PatientDetails,java.util.Collection,java.util.List,util.MeasurementDetails"%>
         <h1>View measurement</h1>
-        <%@include file="../../jspf/patientremote.jspf" %>
-        <%@include file="../../jspf/gpremote.jspf" %>
+        <%@include file="../jspf/gpremote.jspf" %>
 
         <%!
             public void jspInit() {
-                patientRemote = getPatientRemote();
                 gpRemote = getGPRemote();
             }
          %>
@@ -17,7 +15,7 @@
             //Step 0 : select type
             if(username != null && type == null) {
                     out.println("You must select a type of measurement that you wish to see...");
-                    List<String> types = gpRemote.getMeasurementTypes(session_username,session_password,username);
+                    List<String> types = gpRemote.getMeasurementTypes(username);
                     out.println("<ol>");
                     for(String s : types) {
                         out.println("<li><a href='viewmeasurements.jsp?username="+username+"&type="+s+"'>"+s+"</a></li>");
@@ -26,7 +24,7 @@
             }
             //Stap 1 : view measurements for that type
             else if(username != null && type != null) {
-                PatientDetails pd = gpRemote.getPatientDetails(session_username,session_password,username);
+                PatientDetails pd = gpRemote.getPatientDetails(username);
                 if(pd != null) {
                     Collection<MeasurementDetails> cmd = pd.getMeasurementsOfType(type);
                     Object[] measurements = cmd == null ? null : cmd.toArray();
@@ -65,4 +63,4 @@
                 }
             %>
 
-<%@include file="../../jspf/footer.jspf" %>
+<%@include file="../jspf/footer.jspf" %>

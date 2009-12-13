@@ -1,8 +1,8 @@
-<%@include file="../../jspf/header.jspf" %>
+<%@include file="../jspf/header.jspf" %>
 <%@ page import="javax.naming.*,util.MedicationDetails,util.PrescriptionDetails,java.util.List"%>
 
 <h1>Add prescription</h1>
-       <%@include file="../../jspf/gpremote.jspf" %>
+       <%@include file="../jspf/gpremote.jspf" %>
        <%!
             public void jspInit() {
                 gpRemote = getGPRemote();
@@ -25,7 +25,7 @@
    //Step 0 : select a medicine to prescribe
    if(posted == null && username != null && medication == null) {
         out.println("<p>Please select a medicine to prescribe to the patient.");
-        List<MedicationDetails> medications = gpRemote.getAllMedications(gp_name, gp_password);
+        List<MedicationDetails> medications = gpRemote.getAllMedications();
         out.println("<ol>");
         for(MedicationDetails m : medications)
             out.println("<li><a href='addprescription.jsp?username="+username+"&medication="+m.getName()+"'>"+m.getName()+"</a></li>");
@@ -90,11 +90,11 @@
             String p_etime   = request.getParameter("etime0")+"-"+request.getParameter("etime1")+"-"+request.getParameter("etime2");
             
             PrescriptionDetails pd = new PrescriptionDetails(p_unit,p_freq,p_stime,p_etime, p_fixed,medication);
-            if(gpRemote.addPrescription(gp_name, gp_password, username , pd)) {
+            if(gpRemote.addPrescription(username , pd)) {
                 out.println("Succes!");
             }
             else
                 out.println("Failed ...");
     }
 %>
-<%@include file="../../jspf/footer.jspf" %>
+<%@include file="../jspf/footer.jspf" %>

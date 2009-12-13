@@ -1,7 +1,7 @@
-<%@include file="../jspf/header.jspf" %>
+<%@include file="jspf/header.jspf" %>
 <%@ page import="util.PatientDetails,java.util.Collection,java.util.List,util.PrescriptionDetails,java.util.List,util.MedicationDetails"%>
         <h1>View prescriptions</h1>
-        <%@include file="../jspf/patientremote.jspf" %>
+        <%@include file="jspf/patientremote.jspf" %>
 
         <%!
             public void jspInit() {
@@ -10,7 +10,7 @@
          %>
          <%
             //View prescriptions for the patient
-            PatientDetails pd = patientRemote.getPatientDetails(session_username, session_password);
+            PatientDetails pd = patientRemote.getPatientDetails(session_username);
             if(pd != null) {
                  Collection<PrescriptionDetails> prds = pd.getPrescriptions();                    
                  Object[] prescriptions = (prds == null) ? null : prds.toArray();
@@ -47,4 +47,4 @@
                  } else out.println("An error has occured. Or you do not have the required access rights.");
             %>
 
-<%@include file="../jspf/footer.jspf" %>
+<%@include file="jspf/footer.jspf" %>

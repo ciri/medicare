@@ -1,19 +1,17 @@
-<%@include file="../../jspf/header.jspf" %>
+<%@include file="../jspf/header.jspf" %>
 <%@ page import="util.PatientDetails"%>
 
         <h1>View Patient</h1>
-        <%@include file="../../jspf/patientremote.jspf" %>
-        <%@include file="../../jspf/gpremote.jspf" %>
+        <%@include file="../jspf/gpremote.jspf" %>
 
         <%!
             public void jspInit() {
-                patientRemote = getPatientRemote();
                 gpRemote = getGPRemote();
             }
          %>
          <%
-            String viewname = request.getParameter("username");
-            PatientDetails pd = gpRemote.getPatientDetails(session_username, session_password,viewname);
+            String username = request.getParameter("username");
+            PatientDetails pd = gpRemote.getPatientDetails(username);
 
             if(pd != null) {
          %>
@@ -45,4 +43,4 @@
             }
          %>
          
-<%@include file="../../jspf/footer.jspf" %>
+<%@include file="../jspf/footer.jspf" %>

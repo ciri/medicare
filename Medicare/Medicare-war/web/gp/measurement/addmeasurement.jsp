@@ -1,4 +1,4 @@
-<%@include file="../../jspf/header.jspf" %>
+<%@include file="../jspf/header.jspf" %>
 <%@ page import="javax.naming.*,util.MeasurementDetails"%>
 <%
    String posted = null;
@@ -38,7 +38,7 @@
     }
     else {
        %>
-       <%@include file="../../jspf/gpremote.jspf" %>
+       <%@include file="../jspf/gpremote.jspf" %>
        <%!
             public void jspInit() {
                 gpRemote = getGPRemote();
@@ -56,11 +56,11 @@
 
             MeasurementDetails md = new MeasurementDetails(m_name,m_type,m_value);
 
-            if(gpRemote.addMeasurement(gp_name, gp_password, p_username, md)) {
+            if(gpRemote.addMeasurement(p_username, md)) {
                 out.println("Succes!");
             }
             else
                 out.println("Failed ...");
     }
 %>
-<%@include file="../../jspf/footer.jspf" %>
+<%@include file="../jspf/footer.jspf" %>

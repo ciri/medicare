@@ -1,4 +1,4 @@
-<%@include file="../../jspf/header.jspf" %>
+<%@include file="../jspf/header.jspf" %>
 <%
    String posted = null;
 
@@ -37,7 +37,7 @@
     }
     else {
        %>
-       <%@include file="../../jspf/gpremote.jspf" %>
+       <%@include file="../jspf/gpremote.jspf" %>
        <%!
             public void jspInit() {
                 gpRemote = getGPRemote();
@@ -49,11 +49,11 @@
             String p_password = request.getParameter("password");
 
             out.println("Added : "+p_SSN+","+p_username+","+p_password+"<br/>");
-            if(gpRemote.createPatient(session_username, session_password, p_SSN, p_username, p_password)) {
+            if(gpRemote.createPatient(session_username, p_SSN, p_username, p_password)) {
                 out.println("Succes!");
             }
             else
                 out.println("Failed ...");
     }
 %>
-<%@include file="../../jspf/footer.jspf" %>
+<%@include file="../jspf/footer.jspf" %>

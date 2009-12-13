@@ -1,0 +1,41 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ page import="javax.servlet.http.HttpSession"%>
+
+<html>
+    <head>
+        <title>Medicare v1.0</title>
+    </head>
+    <body>
+        <%
+            String session_username;
+            //TODO delete
+            String session_password = "patient0";
+            if(session != null && session.getAttribute("username") != null ) {
+                session_username = (String)session.getAttribute("username");
+                    
+            }
+            else {
+                session_username = request.getUserPrincipal().getName();
+                session.setAttribute("username",session_username);
+           
+            }
+          
+        %>
+         Dag  <% out.println(session_username); %>
+        <center>
+                  <a href="${pageContext.request.contextPath}/init.jsp">Init</a>
+                | <a href="${pageContext.request.contextPath}/index.jsp">Index</a>
+                | <a href="${pageContext.request.contextPath}/gp/patient/addpatient.jsp">Add Patient</a>
+                | <a href="${pageContext.request.contextPath}/gp/medication/addmedication.jsp">Add Medication</a>
+                | <a href="${pageContext.request.contextPath}/gp/patient/patientoverview.jsp">Patient Overview</a>
+                </center>
+       
+                <center>
+                  <a href="${pageContext.request.contextPath}/init.jsp">Init</a>
+                | <a href="${pageContext.request.contextPath}/index.jsp">Index</a>
+                | <a href="${pageContext.request.contextPath}/patient/welcome.jsp">Welcome</a>
+                | <a href="${pageContext.request.contextPath}/patient/addmeasurement.jsp">Add Measurement</a>
+                | <a href="${pageContext.request.contextPath}/patient/myprescriptions.jsp">My Prescriptions</a>
+                | <a href="${pageContext.request.contextPath}/patient/viewnexttask.jsp">Next Task</a>
+                </center>
+         
