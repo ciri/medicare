@@ -1,4 +1,5 @@
-<%@include file="jspf/header.jspf" %>
+<%@ page pageEncoding="UTF-8" %>
+<%@ page import="javax.servlet.http.HttpSession"%>
 
 <%@ page import="javax.naming.*,ejb.patient.PatientRemote,ejb.gp.GPRemote"%>
 

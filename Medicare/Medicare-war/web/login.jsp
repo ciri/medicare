@@ -3,18 +3,15 @@
     Created on : 13-dec-2009, 2:34:56
     Author     : kenneth
 --%>
-<%@include file="jspf/header.jspf" %>
-<%
-   String posted = null;
+<%@ page pageEncoding="UTF-8" %>
+<%@ page import="javax.servlet.http.HttpSession"%>
 
-   try {
-       if(request != null)
-            posted = request.getParameter("submit");
-    
-   } catch(Exception e) {}
+<html>
+    <head>
+        <title>Medicare v1.0</title>
+    </head>
+    <body>
 
-   if(posted == null) {
-%>
         <h1>Login</h1>
             <form method="POST" action="j_security_check">
                     <table>
@@ -35,15 +32,5 @@
                 </tr>
             </table>
             </form>
-<%
-    }
-    else {
- 
-    
-      //      String p_username  = session_username;
-        //    String p_password  = session_password;
 
-       
-    }
-%>
 <%@include file="jspf/footer.jspf" %>
