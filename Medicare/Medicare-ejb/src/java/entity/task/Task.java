@@ -23,7 +23,9 @@ import javax.persistence.Temporal;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "entity.task.Task.findTaskByPrescriptionid",
-                query = "SELECT t FROM Task t WHERE t.prescription.id = :prescriptionid")
+                query = "SELECT t FROM Task t WHERE t.prescription.id = :prescriptionid"),
+    @NamedQuery(name = "entity.task.Task.findTaskByUsername",
+                query = "SELECT t FROM Task t WHERE t.prescription.patient.username = :username")
 })
 public class Task implements Serializable {
     private static final long serialVersionUID = 1L;

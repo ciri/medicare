@@ -38,6 +38,7 @@ public class PatientBean implements PatientRemote {
     
     public TaskDetails getTask(String username) {
         List<TaskDetails> task_aggregate = new ArrayList<TaskDetails>();
+        PatientDetails patient = patientFacadeBean.getPatient(username);
         
         List<PrescriptionDetails> prescriptions = prescriptionFacadeBean.getPrescriptions(username);
         System.out.println("Fetched "+prescriptions.size()+" prescriptions.");
@@ -62,20 +63,27 @@ public class PatientBean implements PatientRemote {
 
                 try { // Call Web Service Operation
                     entities.DoseCheckerBean port = service.getDoseCheckerBeanPort();
-                    // TODO initialize WS operation arguments here
-                    java.lang.String measurementType = "gewicht";
-                    double measurementValue = 102.2d;
-                    java.lang.String medication = "dieetpil";
-                    double standardDose = 10.0d;
-                    // TODO process result here
-                    double result = port.getVariableDoseForName(measurementType, measurementValue, medication, standardDose);
+                    
+                    String measurementType = curr_task.getPrescription().getMedication().getMeasurementrequired();
+                    List<MeasurementDetails> measurements = patient.getMeasurementsOfType(measurementType);
+                    if(measurements == null || measurements.size() == 0) {
+                        curr_task.setNewmeasurementrequired(true);
+                        return curr_task;
+                    }
+                    curr_task.setNewmeasurementrequired(false);
+
+                    double measurementValue = measurements.get(measurements.size()-1).getMeasuredvalue();                    
+                    String medication = curr_task.getPrescription().getMedication().getName();
+                    double standardDose = curr_task.getDose();
+
+                    System.out.println("getVariableDoseForName("+measurementType+","+measurementValue+","+medication+","+standardDose+") == ?");
+                    double result = port.getVariableDoseForName(measurementType, measurementValue, medication, standardDose);                    
+                    System.out.println("getVariableDoseForName("+measurementType+","+measurementValue+","+medication+","+standardDose+") == "+result);
                     dose = (int) Math.round(result);
                 } catch (Exception ex) {
-                    // TODO handle custom exceptions here
+                    dose = 0;
+                    ex.printStackTrace();
                 }
-
-                    
-                
                 curr_task.setDose(dose);
             }
             return curr_task;
@@ -153,7 +161,8 @@ public class PatientBean implements PatientRemote {
         List<String> medications  = new ArrayList<String>();
 
         for(PrescriptionDetails prescription : prescriptions) {
-            medications.add(prescription.getMedication().getName());
+            if(!medications.contains(prescription.getMedication().getName()))
+                    medications.add(prescription.getMedication().getName());
         }
         return medications;
     }

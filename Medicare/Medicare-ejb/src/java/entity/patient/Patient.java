@@ -60,8 +60,8 @@ public class Patient implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date birthdate;
 
-    @OneToOne
-    private Address address;
+    @Column
+    private String address;
     @Column
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date lastconsult;
@@ -71,7 +71,7 @@ public class Patient implements Serializable {
 
     @OneToMany
     private Collection<Task> tasks;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     private Collection<Measurement> measurements;
     
     @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "patient")
@@ -83,9 +83,17 @@ public class Patient implements Serializable {
     public Patient() { }
     public Patient(String SSN, String username, String password) {
         setSSN(SSN);
-        setName(username);
+        
         setUsername(username);
         setPassword(password);
+
+        //Default values
+        setName(username);
+        setBirthdate(new Date());
+        setAddress("Kogels osylei 194<br/>9000 Gent<br/>Belgie");
+        setLastconsult(new Date());
+        setFirstconsult(new Date());
+        setBloodgroup("A");
     }
 
     /**
@@ -183,7 +191,7 @@ public class Patient implements Serializable {
      *
      * @return the value of address
      */
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
@@ -192,7 +200,7 @@ public class Patient implements Serializable {
      *
      * @param address new value of address
      */
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

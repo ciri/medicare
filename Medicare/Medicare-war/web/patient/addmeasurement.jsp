@@ -2,10 +2,13 @@
 <%@ page import="javax.naming.*,util.MeasurementDetails"%>
 <%
    String posted = null;
-
+   String measurementtype = "";
    try {
-       if(request != null)
+       if(request != null) {
             posted = request.getParameter("submit");
+            if(request.getParameter("m") != null)
+                measurementtype = request.getParameter("m");
+       }
    } catch(Exception e) {}
 
    if(posted == null) {
@@ -15,12 +18,8 @@
                 <input type="hidden" name="username" value="<%= request.getParameter("username") %>"/>
             <table>
                 <tr>
-                    <td>Name</td>
-                    <td><input type="text" name="name" value="glucose" /></td>
-                </tr>
-                <tr>
                     <td>Type</td>
-                    <td><input type="text" name="type" value="default" /></td>
+                    <td><input type="text" name="type" value="<%= measurementtype %>" /></td>
                 </tr>
                 <tr>
                     <td>Value</td>
@@ -46,11 +45,10 @@
         %>
        <%
             String p_username  = session_username;
-            String m_name    = request.getParameter("name");
             String m_type    = request.getParameter("type");
             String m_value   = request.getParameter("value");
 
-            MeasurementDetails md = new MeasurementDetails(m_name,m_type,m_value);
+            MeasurementDetails md = new MeasurementDetails(m_type,m_value);
 
             if(patientRemote.addMeasurement(p_username, md)) {
                 out.println("Succes!");

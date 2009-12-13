@@ -1,6 +1,8 @@
-    <br>
+    <div id="footerDiv">
         <center>
             Medicare 2009 &copy; Enric Junqué de Fortuny & Kenneth Waegeman for UGent.<br/>
         </center>
+        </div>
+    </div>
     </body>
 </html>

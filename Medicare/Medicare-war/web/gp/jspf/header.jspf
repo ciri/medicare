@@ -4,16 +4,23 @@
 <html>
     <head>
         <title>Medicare v1.0</title>
+        <LINK href="${pageContext.request.contextPath}/style.css" rel="stylesheet" type="text/css">
+        <LINK href="${pageContext.request.contextPath}/gp/jspf/gpstyle.css" rel="stylesheet" type="text/css">
     </head>
     <body>
+             <div id="logoDiv">
+            Medicare v1.0
+        </div>
+   
+        <div id="mainDiv">
         <%
             String session_username = request.getUserPrincipal().getName();
         %>
-        <center>
-                  <a href="${pageContext.request.contextPath}/init.jsp">Init</a>
-                | <a href="${pageContext.request.contextPath}/index.jsp">Index</a>
-                | <a href="${pageContext.request.contextPath}/gp/patient/addpatient.jsp">Add Patient</a>
-                | <a href="${pageContext.request.contextPath}/gp/medication/addmedication.jsp">Add Medication</a>
-                | <a href="${pageContext.request.contextPath}/gp/patient/patientoverview.jsp">Patient Overview</a>
-                | <a href="${pageContext.request.contextPath}/logout.jsp">Logout</a>
-                </center>         
+        <div id="menuDiv">
+                 <a href="${pageContext.request.contextPath}/init.jsp">Init</a>
+                 <a href="${pageContext.request.contextPath}/index.jsp">Index</a>
+                 <a href="${pageContext.request.contextPath}/gp/patient/addpatient.jsp">Add Patient</a>
+                 <a href="${pageContext.request.contextPath}/gp/medication/addmedication.jsp">Add Medication</a>
+                 <a href="${pageContext.request.contextPath}/gp/patient/patientoverview.jsp">Patient Overview</a>
+                 <a href="${pageContext.request.contextPath}/logout.jsp">Logout</a>
+        </div>

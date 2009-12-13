@@ -14,6 +14,7 @@ import util.MeasurementDetails;
 import util.MedicationDetails;
 import util.PatientDetails;
 import util.PrescriptionDetails;
+import util.TaskDetails;
 
 @Stateless
 public class GPBean implements GPRemote {
@@ -99,6 +100,10 @@ public class GPBean implements GPRemote {
 
     public List<PrescriptionDetails> getPrescriptions(String p_username) {
         return prescriptionFacadeBean.getPrescriptions(p_username);
+    }
+
+    public List<TaskDetails> getTasks(String p_username) {
+        return taskFacadeBean.getTasks(p_username);
     }
 }
 

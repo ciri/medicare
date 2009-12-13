@@ -9,7 +9,7 @@
     }
     %>
         <h1>Patient Overview For <%= session_username %></h1>
-        <table border="1">
+        <table>
         <%
             Object[] patients =     gpRemote.getGPDetails(session_username)
                                             .getPatients()
@@ -30,13 +30,11 @@
                     out.println("<td>"+pd.getSSN()+"</td>");
                     out.println("<td>"+pd.getUsername()+"</td>");
                     out.println("<td>" +
-                                   "<a href='viewpatient.jsp?username="+pd.getUsername()+"'>Profile</a> | " +
-                                   "<a href='../measurement/viewmeasurements.jsp?username="+pd.getUsername()+"'>Measurement</a> | " +
-                                   "<a href='../prescription/viewprescriptions.jsp?username="+pd.getUsername()+"'>Prescriptions</a>" +
+                                   "<a href='viewpatient.jsp?username="+pd.getUsername()+"'>Profile</a>" +
                                "</td>");
                     out.println("<td>" +
-                                   "<a href='editpatient.jsp?username="+pd.getUsername()+"'>Edit Profile</a> | " +
-                                   "<a href='../measurement/addmeasurement.jsp?username="+pd.getUsername()+"'>Add measurement</a> | " +
+                                   "<a href='editpatient.jsp?username="+pd.getUsername()+"'>Edit Profile</a> <br/> " +
+                                   "<a href='../measurement/addmeasurement.jsp?username="+pd.getUsername()+"'>Add measurement</a> <br/> " +
                                    "<a href='../prescription/addprescription.jsp?username="+pd.getUsername()+"'>Add prescription</a>"+
                                 "</td>");
                 out.println("</tr>");

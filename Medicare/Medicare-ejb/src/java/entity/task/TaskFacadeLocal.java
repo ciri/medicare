@@ -14,4 +14,5 @@ public interface TaskFacadeLocal {
     public void addNextTask(Long prescriptionid);
     public void addNextTask(Long prescriptionid,Long previoustaskid);
     public List<TaskDetails> getTaskForPrescription(Long id);
+    public List<TaskDetails> getTasks(String p_username);
 }

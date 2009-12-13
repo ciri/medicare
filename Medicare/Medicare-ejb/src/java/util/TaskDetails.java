@@ -13,7 +13,8 @@ public class TaskDetails implements Serializable,Comparable {
     private String status;
     private Date tasktime;
     private PrescriptionDetails prescription;
-
+    private boolean newmeasurementrequired;
+    private String medication;
 
     public TaskDetails(Long id, String status, Date tasktime) {
         setId(id);
@@ -23,6 +24,41 @@ public class TaskDetails implements Serializable,Comparable {
     public TaskDetails(String status, Date tasktime) {
         setStatus(status);
         setTasktime(tasktime);
+    }
+
+    /**
+     * Get the value of newmeasurementrequired
+     *
+     * @return the value of newmeasurementrequired
+     */
+    public boolean isNewmeasurementrequired() {
+        return newmeasurementrequired;
+    }
+
+    /**
+     * Set the value of newmeasurementrequired
+     *
+     * @param newmeasurementrequired new value of newmeasurementrequired
+     */
+    public void setNewmeasurementrequired(boolean newmeasurementrequired) {
+        this.newmeasurementrequired = newmeasurementrequired;
+    }
+ /**
+     * Get the value of medication
+     *
+     * @return the value of medication
+     */
+    public String getMedication() {
+        return medication;
+    }
+
+    /**
+     * Set the value of medication
+     *
+     * @param newmeasurementrequired new value of medication
+     */
+    public void setMedication(String medication) {
+        this.medication = medication;
     }
 
     /**

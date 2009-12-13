@@ -84,12 +84,23 @@ public class TaskFacadeBean implements TaskFacadeLocal {
         }
         return taskdetails;
     }
+    public List<TaskDetails> getTasks(String username) {
+        List<Task> tasks =  (List<Task>) em.createNamedQuery("entity.task.Task.findTaskByUsername").setParameter("username", username).getResultList();
+        List<TaskDetails> taskdetails = new ArrayList<TaskDetails>();
+        for(Task task : tasks) {
+            TaskDetails td = convert(task);
+            taskdetails.add( td );
+        }
+        return taskdetails;
+    }
     private TaskDetails convert(Task t) {
-        return new TaskDetails(
+        TaskDetails out =  new TaskDetails(
                 t.getId(),
                 t.getStatus(),
                 t.getTasktime()
         );
+        out.setMedication(t.getPrescription().getMedication().getName());
+        return out;
     }
     public Task findById(Long id) {
         return em.find(Task.class, id);
@@ -100,4 +111,5 @@ public class TaskFacadeBean implements TaskFacadeLocal {
     public void persist(Object object) {
         em.persist(object);
     }
+
 }

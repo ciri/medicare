@@ -43,6 +43,7 @@ public class PrescriptionFacadeBean implements PrescriptionFacadeLocal {
         p.setFrequency(pd.getFrequency());
         p.setMedication(findMedicationByName(pd.getMedication().getName()));
         p.setPatient(findPatientByUsername(p_username));
+        p.setUnit(pd.getUnit());
         persist(p);
 
         return p.getId();
@@ -84,7 +85,8 @@ public class PrescriptionFacadeBean implements PrescriptionFacadeLocal {
         return new MedicationDetails(
                 m.getName(),
                 m.getStandarddose(),
-                m.getUnitdose()
+                m.getUnitdose(),
+                m.getMeasurementrequired()
         );
     }
     private List<TaskDetails> convertTasks(Collection<Task> tasks) {

@@ -12,5 +12,4 @@ import javax.ejb.Local;
 public interface MeasurementFacadeLocal {
 
     public List<String> getMeasurementTypes();
-    
 }

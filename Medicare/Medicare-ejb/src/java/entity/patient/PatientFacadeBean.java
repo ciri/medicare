@@ -7,6 +7,7 @@ import entity.prescription.Prescription;
 import entity.task.Task;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -31,6 +32,8 @@ public class PatientFacadeBean implements PatientFacadeLocal {
         if (findByUsername(username) != null || findBySSN(SSN) != null)
             return false;
         Patient patient = new Patient(SSN,username,password);
+
+       
         create(patient);
         return true;
     }
@@ -134,7 +137,7 @@ public class PatientFacadeBean implements PatientFacadeLocal {
             pd.setGps(gps);
             pd.setBirthdate(p.getBirthdate());
             pd.setBloodgroup(p.getBloodgroup());
-            pd.setFirstconsult(pd.getFirstconsult());
+            pd.setFirstconsult(p.getFirstconsult());
             pd.setLastconsult(p.getLastconsult());
             pd.setMeasurements(
                     convertMeasurements(p.getMeasurements())
@@ -142,8 +145,7 @@ public class PatientFacadeBean implements PatientFacadeLocal {
             pd.setPrescriptions(
                     convertPrescriptions(p.getPrescriptions())
             );
-            //pd.setTasks(p.getTasks());
-            //pd.setAddress(p.getAddress());
+            pd.setAddress(p.getAddress());
             return pd;
         }
     }
@@ -181,7 +183,8 @@ public class PatientFacadeBean implements PatientFacadeLocal {
         return new MedicationDetails(
                 m.getName(),
                 m.getStandarddose(),
-                m.getUnitdose()
+                m.getUnitdose(),
+                m.getMeasurementrequired()
         );
     }
     private List<TaskDetails> convertTasks(Collection<Task> tasks) {

@@ -7,14 +7,37 @@ public class MedicationDetails implements Serializable {
     private String name;
     private double standarddose;
     private String unitdose;
+    private String measurementrequired;
 
-    public MedicationDetails(String name, String standarddose, String unitdose) {
-        this(name,Double.parseDouble(standarddose),unitdose);
+    public MedicationDetails(String name, String standarddose, String unitdose,String measurementrequired) {
+        this(name,Double.parseDouble(standarddose),unitdose,measurementrequired);
     }
-    public MedicationDetails(String name, double standarddose, String unitdose) {
+    public MedicationDetails(String name, String standarddose, String unitdose) {
+        this(name,Double.parseDouble(standarddose),unitdose,"");
+    }
+    public MedicationDetails(String name, double standarddose, String unitdose,String measurementrequired) {
         setName(name);
         setStandarddose(standarddose);
         setUnitdose(unitdose);
+        setMeasurementrequired(measurementrequired);
+    }
+
+    /**
+     * Get the value of measurementrequired
+     *
+     * @return the value of measurementrequired
+     */
+    public String getMeasurementrequired() {
+        return measurementrequired;
+    }
+
+    /**
+     * Set the value of measurementrequired
+     *
+     * @param measurementrequired new value of measurementrequired
+     */
+    public void setMeasurementrequired(String measurementrequired) {
+        this.measurementrequired = measurementrequired;
     }
 
     /**

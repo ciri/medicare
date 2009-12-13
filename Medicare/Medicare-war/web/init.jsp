@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ page import="javax.servlet.http.HttpSession"%>
 
-<%@ page import="javax.naming.*,ejb.patient.PatientRemote,ejb.gp.GPRemote,util.PrescriptionDetails,util.MedicationDetails"%>
+<%@ page import="javax.naming.*,ejb.patient.PatientRemote,ejb.gp.GPRemote,util.MeasurementDetails,util.PatientDetails,util.PrescriptionDetails,util.MedicationDetails"%>
 
 <%!
     private PatientRemote patientRemote = null;
@@ -23,7 +23,7 @@
 %>
 
         <h1>Initialize</h1>
-        <p>Als u dit pagina ziet, is de applicatie aan't initialiseren.</p>
+        <p>Als u deze pagina ziet, is de applicatie aan't initialiseren.</p>
         <%
             for (int i=0;i<3;i++) {
                 String toadd = "gp"+i;
@@ -39,15 +39,22 @@
                     out.print("Creating patient "+i+"<br/>");
                 else
                     out.print("Error creating patient "+i+"<br/>");
+                if(i%3==0)
+                   patientRemote.addMeasurement(toadd, new MeasurementDetails("gewicht","112"));
             }
 
             //Geef patient een taak
             MedicationDetails   md  = new MedicationDetails("Neurofen 100","200","100");
             MedicationDetails   md2 = new MedicationDetails("Neurofen 500","500","500");
+            MedicationDetails   md3 = new MedicationDetails("dieetpil","100","1 koffielepel");
+                                md3.setMeasurementrequired("gewicht");
             PrescriptionDetails pd  = new PrescriptionDetails("1","2","13-12-2009","15-12-2009","true",md.getName());
             PrescriptionDetails pd2 = new PrescriptionDetails("1","2","13-12-2009","15-12-2009","true",md2.getName());
+            PrescriptionDetails pd3 = new PrescriptionDetails("1","2","13-12-2009","15-12-2009","false",md3.getName());
             gpRemote.addMedication(md);
             gpRemote.addMedication(md2);
+            gpRemote.addMedication(md3);
             gpRemote.addPrescription( "patient0", pd);
             gpRemote.addPrescription( "patient0", pd2);
+            gpRemote.addPrescription( "patient0", pd3);
         %>

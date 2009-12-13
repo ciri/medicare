@@ -26,7 +26,10 @@
                     <td>Unit Dose</td>
                     <td><input type="text" name="udose" value="milligram" /></td>
                 </tr>
-
+                <tr>
+                    <td>Required Measurement Type</td>
+                    <td><input type="text" name="mrequired" value="none" /></td>
+                </tr>
                 <tr>
                     <td colspan="2">
                         <INPUT TYPE="submit" name="submit" value="Add" />
@@ -50,9 +53,9 @@
             String m_name    = request.getParameter("name");
             String m_sdose   = request.getParameter("sdose");
             String m_udose   = request.getParameter("udose");
+            String m_measurementrequired = request.getParameter("mrequired");
 
-
-            MedicationDetails md = new MedicationDetails(m_name,m_sdose,m_udose);
+            MedicationDetails md = new MedicationDetails(m_name,m_sdose,m_udose,m_measurementrequired);
 
             if(gpRemote.addMedication( md )) {
                 out.println("Succes!");
