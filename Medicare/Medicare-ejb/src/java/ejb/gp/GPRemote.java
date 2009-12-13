@@ -37,6 +37,15 @@ public interface GPRemote {
     MedicationDetails getMedication(String gp_name, String gp_password, String m);
     
     /* Prescription operations */
+    /**
+     * Adds a prescription, but also adds the necessary prescription tasks ...
+     * 
+     * @param gp_name
+     * @param gp_password
+     * @param p_username
+     * @param pd
+     * @return
+     */
     boolean addPrescription(String gp_name, String gp_password,
                             String p_username,
                             PrescriptionDetails pd

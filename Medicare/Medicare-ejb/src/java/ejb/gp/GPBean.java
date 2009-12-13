@@ -5,6 +5,11 @@ import entity.measurement.MeasurementFacadeLocal;
 import entity.medication.MedicationFacadeLocal;
 import entity.patient.PatientFacadeLocal;
 import entity.prescription.PrescriptionFacadeLocal;
+import entity.task.Task;
+import entity.task.TaskFacadeLocal;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -24,10 +29,10 @@ public class GPBean implements GPRemote {
     private PatientFacadeLocal patientFacadeBean;
 
     @EJB
-    private MeasurementFacadeLocal measurementFacade;
+    private MeasurementFacadeLocal measurementFacadeBean;
 
     @EJB
-    private MedicationFacadeLocal medicationFacade;
+    private MedicationFacadeLocal medicationFacadeBean;
 
     public boolean addGP(String username, String password) {
         try {
@@ -95,33 +100,34 @@ public class GPBean implements GPRemote {
 
     public List<String> getMeasurementTypes(String gp_name, String gp_password, String p_username) {
         if(gpFacadeBean.isValidPassword(gp_name, gp_password))
-            return measurementFacade.getMeasurementTypes();
+            return measurementFacadeBean.getMeasurementTypes();
         else
             return null;
     }
 
     public boolean addMedication(String gp_name, String gp_password, MedicationDetails md) {
         if(gpFacadeBean.isValidPassword(gp_name, gp_password))
-            return medicationFacade.addMedication(md);
+            return medicationFacadeBean.addMedication(md);
         else
             return false;
     }
     public List<MedicationDetails> getAllMedications(String gp_name, String gp_password) {
         if(gpFacadeBean.isValidPassword(gp_name, gp_password))
-            return medicationFacade.getAllMedications();
+            return medicationFacadeBean.getAllMedications();
         else
             return null;
     }
     public MedicationDetails getMedication(String gp_name, String gp_password, String m) {
         if(gpFacadeBean.isValidPassword(gp_name, gp_password))
-            return medicationFacade.getMedication(m);
+            return medicationFacadeBean.getMedication(m);
         else
             return null;
     }
 
     public boolean addPrescription(String gp_name, String gp_password, String p_username, PrescriptionDetails pd) {
-        if(gpFacadeBean.isValidPassword(gp_name, gp_password))
+        if(gpFacadeBean.isValidPassword(gp_name, gp_password)) {
             return patientFacadeBean.addPrescription(p_username,pd);
+        }
         else
             return false;
     }

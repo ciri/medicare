@@ -1,14 +1,18 @@
 package entity.prescription;
 
 import entity.medication.Medication;
+import entity.task.Task;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import util.PrescriptionDetails;
 
@@ -34,6 +38,10 @@ public class Prescription implements Serializable {
     @ManyToOne
     private Medication medication;
 
+    @OneToMany(cascade=CascadeType.ALL)
+    private Collection<Task> tasks;
+
+
     public Prescription() {}
     public Prescription(PrescriptionDetails pd) {
         setUnit(pd.getUnit());
@@ -41,6 +49,25 @@ public class Prescription implements Serializable {
         setStarttime(pd.getStarttime());
         setEndtime(pd.getEndtime());
         setFixed(pd.isFixed());
+        setTasks(pd.getTasks());
+    }
+
+    /**
+     * Get the value of tasks
+     *
+     * @return the value of tasks
+     */
+    public Collection getTasks() {
+        return tasks;
+    }
+
+    /**
+     * Set the value of tasks
+     *
+     * @param tasks new value of tasks
+     */
+    public void setTasks(Collection tasks) {
+        this.tasks = tasks;
     }
 
     /**

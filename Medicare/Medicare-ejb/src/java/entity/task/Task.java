@@ -6,10 +6,13 @@
 package entity.task;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -21,6 +24,54 @@ public class Task implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column
+    private String status;
+
+    @Column
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date tasktime;
+
+    public Task() {}
+    public Task(String status, Date tasktime) {
+        setStatus(status);
+        setTasktime(tasktime);
+    }
+    /**
+     * Get the value of tasktime
+     *
+     * @return the value of tasktime
+     */
+    public Date getTasktime() {
+        return tasktime;
+    }
+
+    /**
+     * Set the value of tasktime
+     *
+     * @param tasktime new value of tasktime
+     */
+    public void setTasktime(Date tasktime) {
+        this.tasktime = tasktime;
+    }
+
+    /**
+     * Get the value of status
+     *
+     * @return the value of status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * Set the value of status
+     *
+     * @param status new value of status
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Long getId() {
         return id;
