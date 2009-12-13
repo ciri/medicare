@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ejb.gp;
 
 import java.util.List;
@@ -16,25 +11,25 @@ import util.PrescriptionDetails;
 @Remote
 public interface GPRemote {
     boolean addGP(String username, String password);
-    GPDetails getGPDetails(String gp_name,String gp_password);
+    GPDetails getGPDetails(String gp_name);
 
     /* Patient operations */
-    boolean addPatient(String gp_name, String gp_password, String p_username);
-    boolean createPatient(String gp_username, String gp_password,
+    boolean addPatient(String gp_username, String p_username);
+    boolean createPatient(String gp_username,
                           String p_SSN, String p_username, String p_password);
-    boolean setPatientInformation(String gp_name,String gp_password,PatientDetails patient);
+    boolean setPatientInformation(PatientDetails patient);
 
-    PatientDetails getPatientDetails(String gp_name,String gp_password,String p_username);
-    List<PatientDetails> getAllPatientDetails(String gp_name, String gp_password);
+    PatientDetails getPatientDetails(String p_username);
+    List<PatientDetails> getAllPatientDetails();
 
     /* Measurement operations */
-    boolean addMeasurement(String gp_name, String gp_password, String p_username, MeasurementDetails md);
-    List<String> getMeasurementTypes(String gp_name,String gp_password, String p_username);
+    boolean addMeasurement(String p_username, MeasurementDetails md);
+    List<String> getMeasurementTypes(String p_username);
 
     /* Medication operations */
-    boolean addMedication(String gp_name, String gp_password, MedicationDetails md);
-    List<MedicationDetails> getAllMedications(String gp_name, String gp_password);
-    MedicationDetails getMedication(String gp_name, String gp_password, String m);
+    boolean addMedication(MedicationDetails md);
+    List<MedicationDetails> getAllMedications();
+    MedicationDetails getMedication(String m);
     
     /* Prescription operations */
     /**
@@ -46,8 +41,5 @@ public interface GPRemote {
      * @param pd
      * @return
      */
-    boolean addPrescription(String gp_name, String gp_password,
-                            String p_username,
-                            PrescriptionDetails pd
-    );
+    boolean addPrescription( String p_username, PrescriptionDetails pd );
 }

@@ -7,13 +7,12 @@ import util.TaskDetails;
 
 /**
  *
- * @author Kristof
+ * @author ciri
  */
 @Remote
 public interface PatientRemote {
-    boolean addPatient(String SSN, String username, String password);
-    boolean addMeasurement(String username, String password, MeasurementDetails md);
-    PatientDetails getPatientDetails(String username, String password);
-    TaskDetails getTask(String username, String password);
-    boolean updateTask(String username, String password,String taskid, String newstatus);
+    boolean addMeasurement(String username, MeasurementDetails md);
+    PatientDetails getPatientDetails(String username);
+    TaskDetails getTask(String username);
+    boolean updateTask(String taskid, String newstatus);
 }
