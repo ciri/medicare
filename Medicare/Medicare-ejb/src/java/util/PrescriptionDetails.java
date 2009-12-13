@@ -57,11 +57,12 @@ public class PrescriptionDetails implements Serializable {
     }
     private void addTasks() {
         tasks = new ArrayList<TaskDetails>();
-        Calendar c = new GregorianCalendar();
+      //  tasks.add(new TaskDetails("in progress",starttime));
+
+        /*Calendar c = new GregorianCalendar();
         c.setTime(starttime);
         int start_year = c.get(Calendar.YEAR);
         int start_day  = c.get(Calendar.DAY_OF_YEAR);
-        int start_hour = c.get(Calendar.HOUR_OF_DAY);
 
         c.setTime(endtime);
         int end_year = c.get(Calendar.YEAR);
@@ -81,7 +82,7 @@ public class PrescriptionDetails implements Serializable {
                  }
              }
            }
-         }
+         }*/
     }
     /**
      * Get the value of id

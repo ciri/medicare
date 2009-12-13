@@ -1,17 +1,19 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package entity.task;
 
+import entity.prescription.Prescription;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 
 /**
@@ -19,6 +21,10 @@ import javax.persistence.Temporal;
  * @author ciri
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "entity.task.Task.findTaskByPrescriptionid",
+                query = "SELECT t FROM Task t WHERE t.prescription.id = :prescriptionid")
+})
 public class Task implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -28,15 +34,38 @@ public class Task implements Serializable {
     @Column
     private String status;
 
-    @Column
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(columnDefinition="timestamp")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date tasktime;
+
+    @ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+    @JoinColumn(name="PRESCRIPTION_ID")
+    private Prescription prescription;
 
     public Task() {}
     public Task(String status, Date tasktime) {
         setStatus(status);
         setTasktime(tasktime);
     }
+
+    /**
+     * Get the value of prescription
+     *
+     * @return the value of prescription
+     */
+    public Prescription getPrescription() {
+        return prescription;
+    }
+
+    /**
+     * Set the value of prescription
+     *
+     * @param tasktime new value of prescription
+     */
+    public void setPrescription(Prescription prescription) {
+        this.prescription = prescription;
+    }
+
     /**
      * Get the value of tasktime
      *

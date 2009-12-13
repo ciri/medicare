@@ -72,7 +72,8 @@ public class Patient implements Serializable {
     private Collection<Task> tasks;
     @OneToMany(cascade = CascadeType.ALL)
     private Collection<Measurement> measurements;
-    @OneToMany(cascade = CascadeType.ALL)
+    
+    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "patient")
     private Collection<Prescription> prescriptions;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "patients")

@@ -4,6 +4,8 @@ import entity.gp.GPFacadeLocal;
 import entity.measurement.MeasurementFacadeLocal;
 import entity.medication.MedicationFacadeLocal;
 import entity.patient.PatientFacadeLocal;
+import entity.prescription.PrescriptionFacadeLocal;
+import entity.task.TaskFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -27,6 +29,12 @@ public class GPBean implements GPRemote {
 
     @EJB
     private MedicationFacadeLocal medicationFacadeBean;
+
+    @EJB
+    private PrescriptionFacadeLocal prescriptionFacadeBean;
+
+    @EJB
+    private TaskFacadeLocal taskFacadeBean;
 
     public boolean addGP(String username, String password) {
         try {
@@ -82,7 +90,15 @@ public class GPBean implements GPRemote {
         return medicationFacadeBean.getMedication(m);
     }
     public boolean addPrescription(String p_username, PrescriptionDetails pd) {
-        return patientFacadeBean.addPrescription(p_username,pd);
+        //TODO: remove
+        //return patientFacadeBean.addPrescription(p_username,pd);
+        Long id = prescriptionFacadeBean.addPrescription(p_username,pd);
+        taskFacadeBean.addNextTask(id);
+        return true;
+    }
+
+    public List<PrescriptionDetails> getPrescriptions(String p_username) {
+        return prescriptionFacadeBean.getPrescriptions(p_username);
     }
 }
 
