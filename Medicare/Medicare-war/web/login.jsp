@@ -32,5 +32,5 @@
                 </tr>
             </table>
             </form>
-
-<%@include file="jspf/footer.jspf" %>
+    </body>
+</html>

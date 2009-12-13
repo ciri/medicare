@@ -25,14 +25,6 @@
         <h1>Initialize</h1>
         <p>Als u dit pagina ziet, is de applicatie aan't initialiseren.</p>
         <%
-            for (int i=0;i<10;i++) {
-                String toadd = "patient"+i;
-                String ssn = "00"+i+"-000000-"+i;
-                if(patientRemote.addPatient(ssn,toadd, toadd))
-                    out.print("Creating patient "+i+"<br/>");
-                else
-                    out.print("Error creating patient "+i+"<br/>");
-            }
             for (int i=0;i<3;i++) {
                 String toadd = "gp"+i;
                 if(gpRemote.addGP(toadd, toadd))
@@ -40,18 +32,18 @@
                 else
                     out.print("Error creating gp "+i+"<br/>");
             }
-
-            for(int i=0;i<5;i++) {
-                if(gpRemote.addPatient("gp0","gp0", "patient"+i))
-                    out.print("Adding patient"+i+" to gp0<br/>");
+            for (int i=0;i<10;i++) {
+                String toadd = "patient"+i;
+                String ssn = "00"+i+"-000000-"+i;
+                if(gpRemote.createPatient("gp"+(i%3),ssn,toadd, toadd))
+                    out.print("Creating patient "+i+"<br/>");
                 else
-                    out.print("Error adding patient "+i+" to gp0<br/>");
-             }
-            //Geef patient een taak
+                    out.print("Error creating patient "+i+"<br/>");
+            }
+
+                       //Geef patient een taak
             MedicationDetails   md = new MedicationDetails("ibuprofen","1","200");
             PrescriptionDetails pd = new PrescriptionDetails("1","2","01-01-1999","04-04-2011","true","ibuprofen");
-            gpRemote.addMedication("gp0", "gp0", md);
-            gpRemote.addPrescription("gp0", "gp0", "patient0", pd);
+            gpRemote.addMedication(md);
+            gpRemote.addPrescription( "patient0", pd);
         %>
-
-<%@include file="jspf/footer.jspf" %>
