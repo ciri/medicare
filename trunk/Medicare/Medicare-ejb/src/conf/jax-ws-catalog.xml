@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://chaos169.test.atlantis.ugent.be:8080/DoseCheckerBeanService/DoseCheckerBean?wsdl" uri="wsdl/chaos169.test.atlantis.ugent.be_8080/DoseCheckerBeanService/DoseCheckerBean.wsdl"/>
+    <system systemId="http://chaos169.test.atlantis.ugent.be:8080/DoseCheckerBeanService/DoseCheckerBean?xsd=1" uri="wsdl/chaos169.test.atlantis.ugent.be_8080/DoseCheckerBeanService/DoseCheckerBean.xsd_1.xsd"/>
+</catalog>
+
+
