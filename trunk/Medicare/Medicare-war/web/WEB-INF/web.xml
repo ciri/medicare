@@ -28,6 +28,10 @@
             <web-resource-name>GP pages</web-resource-name>
             <description/>
             <url-pattern>/gp/*</url-pattern>
+            <url-pattern>/gp/measurement/*</url-pattern>
+            <url-pattern>/gp/patient/*</url-pattern>
+            <url-pattern>/gp/medication/*</url-pattern>
+            <url-pattern>/gp/prescription/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
