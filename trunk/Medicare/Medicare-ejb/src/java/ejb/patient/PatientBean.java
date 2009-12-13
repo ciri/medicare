@@ -26,7 +26,7 @@ import util.TaskDetails;
 public class PatientBean implements PatientRemote {
     @WebServiceRef(wsdlLocation = "META-INF/wsdl/chaos169.test.atlantis.ugent.be_8080/DoseCheckerBeanService/DoseCheckerBean.wsdl")
     private DoseCheckerBeanService service;
-
+  
     @EJB
     private PatientFacadeLocal patientFacadeBean;
 
@@ -58,20 +58,24 @@ public class PatientBean implements PatientRemote {
             if(curr_task.getPrescription().isFixed())
                 curr_task.setDose(curr_task.getPrescription().getMedication().getStandarddose());
             else {
-                int dose=12345;
-                try {
+                int dose=0;
+
+                try { // Call Web Service Operation
                     entities.DoseCheckerBean port = service.getDoseCheckerBeanPort();
+                    // TODO initialize WS operation arguments here
                     java.lang.String measurementType = "gewicht";
-                    double measurementValue = 115.0d;
+                    double measurementValue = 102.2d;
                     java.lang.String medication = "dieetpil";
-                    double standardDose = 2.0d;
+                    double standardDose = 10.0d;
+                    // TODO process result here
                     double result = port.getVariableDoseForName(measurementType, measurementValue, medication, standardDose);
-                    dose = (int)Math.round(result);
+                    dose = (int) Math.round(result);
                 } catch (Exception ex) {
-                    System.out.println("Error while trying to get the variable dosage ...");
-                    ex.printStackTrace();
-                    dose = 31337;
+                    // TODO handle custom exceptions here
                 }
+
+                    
+                
                 curr_task.setDose(dose);
             }
             return curr_task;
