@@ -1,7 +1,7 @@
-<%@include file="../jspf/header.jspf" %>
+<%@include file="jspf/header.jspf" %>
 <%@ page import="util.PatientDetails,java.util.Collection,java.util.List,java.util.Date,util.TaskDetails"%>
         <h1>View prescriptions</h1>
-        <%@include file="../jspf/patientremote.jspf" %>
+        <%@include file="jspf/patientremote.jspf" %>
 
         <%!
             public void jspInit() {
@@ -10,7 +10,7 @@
          %>
          <%
             //View prescriptions for the patient
-            TaskDetails td = patientRemote.getTask(session_username, session_password);
+            TaskDetails td = patientRemote.getTask(session_username);
 
             //Step 0 : view task
             if(request.getParameter("submit") == null) {
@@ -66,8 +66,7 @@
             //Step 2 : form has been submitted, update the task
             else {
 
-                    if(patientRemote.updateTask(session_username, session_password, 
-                                                request.getParameter("taskid").toString(),
+                    if(patientRemote.updateTask(request.getParameter("taskid").toString(),
                                                 request.getParameter("newstatus").toString()))
                                 out.println("Succes!");
                     else
@@ -76,4 +75,4 @@
                  }
             %>
 
-<%@include file="../jspf/footer.jspf" %>
+<%@include file="jspf/footer.jspf" %>

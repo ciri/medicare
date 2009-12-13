@@ -1,4 +1,4 @@
-<%@include file="../jspf/header.jspf" %>
+<%@include file="jspf/header.jspf" %>
 <%@ page import="javax.naming.*,util.MeasurementDetails"%>
 <%
    String posted = null;
@@ -38,7 +38,7 @@
     }
     else {
        %>
-       <%@include file="../jspf/patientremote.jspf" %>
+       <%@include file="jspf/patientremote.jspf" %>
        <%!
             public void jspInit() {
                 patientRemote = getPatientRemote();
@@ -46,19 +46,17 @@
         %>
        <%
             String p_username  = session_username;
-            String p_password  = session_password;
-
             String m_name    = request.getParameter("name");
             String m_type    = request.getParameter("type");
             String m_value   = request.getParameter("value");
 
             MeasurementDetails md = new MeasurementDetails(m_name,m_type,m_value);
 
-            if(patientRemote.addMeasurement(p_username, p_password, md)) {
+            if(patientRemote.addMeasurement(p_username, md)) {
                 out.println("Succes!");
             }
             else
                 out.println("Failed ...");
     }
 %>
-<%@include file="../jspf/footer.jspf" %>
+<%@include file="jspf/footer.jspf" %>

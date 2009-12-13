@@ -1,12 +1,9 @@
-<%@include file="../../jspf/header.jspf" %>
+<%@include file="../jspf/header.jspf" %>
 <%@ page import="util.PatientDetails,java.util.Collection,java.util.List,util.PrescriptionDetails,java.util.List,util.MedicationDetails"%>
         <h1>View prescriptions</h1>
-        <%@include file="../../jspf/patientremote.jspf" %>
-        <%@include file="../../jspf/gpremote.jspf" %>
-
+        <%@include file="../jspf/gpremote.jspf" %>
         <%!
             public void jspInit() {
-                patientRemote = getPatientRemote();
                 gpRemote = getGPRemote();
             }
          %>
@@ -16,7 +13,7 @@
 
             //View prescriptions for the patient
             if(username != null) {
-                PatientDetails pd = gpRemote.getPatientDetails(session_username, session_password,username);
+                PatientDetails pd = gpRemote.getPatientDetails(username);
                 if(pd != null) {
                     Collection<PrescriptionDetails> prds = pd.getPrescriptions();
                     Object[] prescriptions = (prds == null) ? null : prds.toArray();
@@ -61,4 +58,4 @@
                 }
             %>
 
-<%@include file="../../jspf/footer.jspf" %>
+<%@include file="../jspf/footer.jspf" %>
