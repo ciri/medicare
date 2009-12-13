@@ -17,7 +17,7 @@ public class PatientDetails implements Serializable {
     private String name;
     private String bloodgroup;
     private Date birthdate;
-    private AddressDetails address;
+    private String address;
     private Date lastconsult;
     private Date firstconsult;
     private Collection<String> gps;
@@ -28,9 +28,9 @@ public class PatientDetails implements Serializable {
     public PatientDetails(){};
     
     public PatientDetails(Long id, String SSN,String username) {
-        this.id = id;
-        this.SSN = SSN;
-        this.username = username;
+        setId(id);
+        setSSN(SSN);
+        setUsername(username);
     }
 
     /**
@@ -128,7 +128,7 @@ public class PatientDetails implements Serializable {
      *
      * @return the value of address
      */
-    public AddressDetails getAddress() {
+    public String getAddress() {
         return address;
     }
 
@@ -137,7 +137,7 @@ public class PatientDetails implements Serializable {
      *
      * @param address new value of address
      */
-    public void setAddress(AddressDetails address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

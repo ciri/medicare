@@ -11,7 +11,8 @@
             }
     %>
 
-    You are currently taking following medications :
+    <p>You are currently taking following medications :</p>
+    <p>
     <%
         //View medications for the patient
         List<String> medications = patientRemote.getMedications(session_username);
@@ -26,6 +27,7 @@
             out.println("</ol>");
         }
     %>
-    <font color="red">Warning : you still have uncompleted medication tasks!</font>
-    You can complete your next task <a href="viewnexttask.jsp">here</a>.
+    </p>
+    <p><font color="red">Warning : you still have uncompleted medication tasks!</font></p>
+    <p>You can complete your next task <a href="viewnexttask.jsp">here</a>.</p>
 <%@include file="jspf/footer.jspf" %>

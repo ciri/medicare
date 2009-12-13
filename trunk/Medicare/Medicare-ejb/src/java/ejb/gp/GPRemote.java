@@ -7,6 +7,7 @@ import util.MeasurementDetails;
 import util.MedicationDetails;
 import util.PatientDetails;
 import util.PrescriptionDetails;
+import util.TaskDetails;
 
 @Remote
 public interface GPRemote {
@@ -31,7 +32,6 @@ public interface GPRemote {
     List<MedicationDetails> getAllMedications();
     MedicationDetails getMedication(String m);
     
-    /* Prescription operations */
     /**
      * Adds a prescription, but also adds the necessary prescription tasks ...
      * 
@@ -43,4 +43,6 @@ public interface GPRemote {
      */
     boolean addPrescription( String p_username, PrescriptionDetails pd );
     List<PrescriptionDetails> getPrescriptions(String p_username);
+
+    List<TaskDetails> getTasks(String p_username);
 }

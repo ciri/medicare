@@ -1,0 +1,52 @@
+body {
+    background: #99ccFF;
+    text-align:center;
+}
+#logoDiv {
+    left:50%;
+    width:800px;
+    margin-left:-400px;
+    top:10%;
+    margin-top:-25px;
+
+
+    text-transform:capitalize;
+    position:absolute;
+    font-size:50px;
+    text-align:center;
+}
+#mainDiv {
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-400px;
+    margin-top:-300px;
+    width:800px;
+    height:600px;
+
+    background : white;
+    color      : black;
+    font-family: Arial;
+    padding:20px;
+    text-align:left;
+}
+#footerDiv {
+    padding : 10px;
+    font-weight  :bold;
+    margin-bottom:0px;
+}
+#menuDiv {
+    text-align:center;
+}
+#menuDiv a {
+    text-decoration:none;
+    background:#999999;
+    color : black;
+    font-size:large;
+    padding:10px;
+    margin:10px;
+}
+table thead {
+    background : #999999;
+    color: black;
+}

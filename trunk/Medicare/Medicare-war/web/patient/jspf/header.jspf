@@ -4,16 +4,22 @@
 <html>
     <head>
         <title>Medicare v1.0</title>
+        <LINK href="${pageContext.request.contextPath}/style.css" rel="stylesheet" type="text/css">
+        <LINK href="${pageContext.request.contextPath}/patient/jspf/patientstyle.css" rel="stylesheet" type="text/css">
     </head>
     <body>
+        <div id="logoDiv">
+            Medicare v1.0
+        </div>
+        <div id="mainDiv">
         <%
             String session_username = request.getUserPrincipal().getName();
         %>
-                <center>
-                  <a href="${pageContext.request.contextPath}/init.jsp">Init</a>
-                | <a href="${pageContext.request.contextPath}/patient/index.jsp">Welcome</a>
-                | <a href="${pageContext.request.contextPath}/patient/addmeasurement.jsp">Add Measurement</a>
-                | <a href="${pageContext.request.contextPath}/patient/myprescriptions.jsp">My Prescriptions</a>
-                | <a href="${pageContext.request.contextPath}/patient/viewnexttask.jsp">Next Task</a>
-                | <a href="${pageContext.request.contextPath}/logout.jsp">Logout</a>
-                </center>
+        <div id="menuDiv">
+                 <a href="${pageContext.request.contextPath}/init.jsp">Init</a>
+                 <a href="${pageContext.request.contextPath}/patient/index.jsp">Welcome</a>
+                 <a href="${pageContext.request.contextPath}/patient/addmeasurement.jsp">Add Measurement</a>
+                 <a href="${pageContext.request.contextPath}/patient/myprescriptions.jsp">My Prescriptions</a>
+                 <a href="${pageContext.request.contextPath}/patient/viewnexttask.jsp">Next Task</a>
+                 <a href="${pageContext.request.contextPath}/logout.jsp">Logout</a>
+        </div>
