@@ -20,11 +20,11 @@
                 </tr>
                 <tr>
                     <td>Standard Dose</td>
-                    <td><input type="text" name="sdose" value="0" /></td>
+                    <td><input type="text" name="sdose" value="1" /></td>
                 </tr>
                 <tr>
                     <td>Unit Dose</td>
-                    <td><input type="text" name="udose" value="0" /></td>
+                    <td><input type="text" name="udose" value="milligram" /></td>
                 </tr>
 
                 <tr>

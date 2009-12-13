@@ -14,8 +14,12 @@
 
             //Step 0 : select type
             if(username != null && type == null) {
-                    out.println("You must select a type of measurement that you wish to see...");
+                    
                     List<String> types = gpRemote.getMeasurementTypes(username);
+                    if(types.size() > 0)
+                        out.println("You must select a type of measurement that you wish to see...");
+                    else
+                        out.println("This patient has no assigned measurements yet.");
                     out.println("<ol>");
                     for(String s : types) {
                         out.println("<li><a href='viewmeasurements.jsp?username="+username+"&type="+s+"'>"+s+"</a></li>");
@@ -36,7 +40,6 @@
                         <table>
                 <%
                             out.println("<thead>");
-                                out.println("<th>Name</th>");
                                 out.println("<th>Type</th>");
                                 out.println("<th>Measured Value</th>");
                                 out.println("<th>Date</th>");
@@ -44,7 +47,6 @@
                             for(int i=0;i<measurements.length;i++) {
                                 MeasurementDetails md = (MeasurementDetails) measurements[i];
                                 out.println("<tr>");
-                                    out.println("<td>"+md.getName()+"</td>");
                                     out.println("<td>"+md.getType()+"</td>");
                                     out.println("<td>"+md.getMeasuredvalue()+"</td>");
                                     out.println("<td>"+md.getMeasurementtime()+"</td>");

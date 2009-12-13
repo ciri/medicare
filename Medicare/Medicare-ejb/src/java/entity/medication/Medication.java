@@ -28,16 +28,16 @@ public class Medication implements Serializable {
     @Column
     private String name;
     @Column
-    private int standarddose;
+    private double standarddose;
     @Column
-    private int unitdose;
+    private String unitdose;
 
     /**
      * Get the value of unitdose
      *
      * @return the value of unitdose
      */
-    public int getUnitdose() {
+    public String getUnitdose() {
         return unitdose;
     }
 
@@ -46,7 +46,7 @@ public class Medication implements Serializable {
      *
      * @param unitdose new value of unitdose
      */
-    public void setUnitdose(int unitdose) {
+    public void setUnitdose(String unitdose) {
         this.unitdose = unitdose;
     }
 
@@ -55,7 +55,7 @@ public class Medication implements Serializable {
      *
      * @return the value of standarddose
      */
-    public int getStandarddose() {
+    public double getStandarddose() {
         return standarddose;
     }
 
@@ -64,7 +64,7 @@ public class Medication implements Serializable {
      *
      * @param standarddose new value of standarddose
      */
-    public void setStandarddose(int standarddose) {
+    public void setStandarddose(double standarddose) {
         this.standarddose = standarddose;
     }
 

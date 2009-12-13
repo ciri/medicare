@@ -55,9 +55,10 @@ public class Patient implements Serializable {
     private String name;
     @Column
     private String bloodgroup;
-    @Column
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date birthday;
+
+    @Column(columnDefinition="timestamp")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date birthdate;
 
     @OneToOne
     private Address address;
@@ -196,21 +197,21 @@ public class Patient implements Serializable {
     }
 
     /**
-     * Get the value of birthday
+     * Get the value of birthdate
      *
-     * @return the value of birthday
+     * @return the value of birthdate
      */
-    public Date getBirthday() {
-        return birthday;
+    public Date getBirthdate() {
+        return birthdate;
     }
 
     /**
-     * Set the value of birthday
+     * Set the value of birthdate
      *
-     * @param birthday new value of birthday
+     * @param birthdate new value of birthdate
      */
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
 
     /**

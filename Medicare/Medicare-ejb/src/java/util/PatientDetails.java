@@ -16,7 +16,7 @@ public class PatientDetails implements Serializable {
     //Optional
     private String name;
     private String bloodgroup;
-    private Date birthday;
+    private Date birthdate;
     private AddressDetails address;
     private Date lastconsult;
     private Date firstconsult;
@@ -142,21 +142,21 @@ public class PatientDetails implements Serializable {
     }
 
     /**
-     * Get the value of birthday
+     * Get the value of birthdate
      *
-     * @return the value of birthday
+     * @return the value of birthdate
      */
-    public Date getBirthday() {
-        return birthday;
+    public Date getBirthdate() {
+        return birthdate;
     }
 
     /**
-     * Set the value of birthday
+     * Set the value of birthdate
      *
-     * @param birthday new value of birthday
+     * @param birthdate new value of birthdate
      */
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
 
     /**

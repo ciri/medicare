@@ -5,13 +5,13 @@ import java.io.Serializable;
 public class MedicationDetails implements Serializable {
 
     private String name;
-    private int standarddose;
-    private int unitdose;
+    private double standarddose;
+    private String unitdose;
 
     public MedicationDetails(String name, String standarddose, String unitdose) {
-        this(name,Integer.parseInt(standarddose),Integer.parseInt(unitdose));
+        this(name,Double.parseDouble(standarddose),unitdose);
     }
-    public MedicationDetails(String name, int standarddose, int unitdose) {
+    public MedicationDetails(String name, double standarddose, String unitdose) {
         setName(name);
         setStandarddose(standarddose);
         setUnitdose(unitdose);
@@ -22,7 +22,7 @@ public class MedicationDetails implements Serializable {
      *
      * @return the value of unitdose
      */
-    public int getUnitdose() {
+    public String getUnitdose() {
         return unitdose;
     }
 
@@ -31,7 +31,7 @@ public class MedicationDetails implements Serializable {
      *
      * @param unitdose new value of unitdose
      */
-    public void setUnitdose(int unitdose) {
+    public void setUnitdose(String unitdose) {
         this.unitdose = unitdose;
     }
 
@@ -40,7 +40,7 @@ public class MedicationDetails implements Serializable {
      *
      * @return the value of standarddose
      */
-    public int getStandarddose() {
+    public double getStandarddose() {
         return standarddose;
     }
 
@@ -49,7 +49,7 @@ public class MedicationDetails implements Serializable {
      *
      * @param standarddose new value of standarddose
      */
-    public void setStandarddose(int standarddose) {
+    public void setStandarddose(double standarddose) {
         this.standarddose = standarddose;
     }
 

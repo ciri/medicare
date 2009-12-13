@@ -26,6 +26,6 @@
             out.println("</ol>");
         }
     %>
-    Warning : you still have uncompleted medication tasks!
+    <font color="red">Warning : you still have uncompleted medication tasks!</font>
     You can complete your next task <a href="viewnexttask.jsp">here</a>.
 <%@include file="jspf/footer.jspf" %>
