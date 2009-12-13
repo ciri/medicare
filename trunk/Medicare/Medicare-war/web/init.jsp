@@ -41,9 +41,13 @@
                     out.print("Error creating patient "+i+"<br/>");
             }
 
-                       //Geef patient een taak
+            //Geef patient een taak
             MedicationDetails   md = new MedicationDetails("ibuprofen","1","200");
-            PrescriptionDetails pd = new PrescriptionDetails("1","2","01-01-1999","04-04-2011","true","ibuprofen");
+            MedicationDetails   md2 = new MedicationDetails("ibuprofenXtreme","2","400");
+            PrescriptionDetails pd = new PrescriptionDetails("1","2","13-12-2009","15-12-2009","true","ibuprofen");
+            PrescriptionDetails pd2 = new PrescriptionDetails("1","2","13-12-2009","15-12-2009","false","ibuprofenXtreme");
             gpRemote.addMedication(md);
+            gpRemote.addMedication(md2);
             gpRemote.addPrescription( "patient0", pd);
+            gpRemote.addPrescription( "patient0", pd2);
         %>

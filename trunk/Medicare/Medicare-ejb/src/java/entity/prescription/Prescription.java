@@ -1,6 +1,7 @@
 package entity.prescription;
 
 import entity.medication.Medication;
+import entity.patient.Patient;
 import entity.task.Task;
 import java.io.Serializable;
 import java.util.Collection;
@@ -8,15 +9,24 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import util.PrescriptionDetails;
 
 @Entity
+
+@NamedQueries({
+    @NamedQuery(name = "entity.prescription.Prescription.findPrescriptionByPatientid",
+                query = "SELECT p FROM Prescription p WHERE p.patient.id = :patientid")
+})
 public class Prescription implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,8 +48,11 @@ public class Prescription implements Serializable {
     @ManyToOne
     private Medication medication;
 
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     private Collection<Task> tasks;
+    @ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+    @JoinColumn(name="PATIENT_ID")
+    private Patient patient;
 
 
     public Prescription() {}
@@ -50,6 +63,24 @@ public class Prescription implements Serializable {
         setEndtime(pd.getEndtime());
         setFixed(pd.isFixed());
         setTasks(pd.getTasks());
+    }
+
+    /**
+     * Get the value of tasks
+     *
+     * @return the value of tasks
+     */
+    public Patient getPatient() {
+        return patient;
+    }
+
+    /**
+     * Set the value of tasks
+     *
+     * @param tasks new value of tasks
+     */
+    public void setPatient (Patient patient) {
+        this.patient = patient;
     }
 
     /**

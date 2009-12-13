@@ -42,4 +42,5 @@ public interface GPRemote {
      * @return
      */
     boolean addPrescription( String p_username, PrescriptionDetails pd );
+    List<PrescriptionDetails> getPrescriptions(String p_username);
 }

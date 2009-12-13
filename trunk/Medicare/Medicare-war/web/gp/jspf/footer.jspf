@@ -1,12 +1,6 @@
     <br>
         <center>
             Medicare 2009 &copy; Enric Junqué de Fortuny & Kenneth Waegeman for UGent.<br/>
-            <%
-            if(session != null) {
-                out.println(session.getAttribute("username"));
-              
-            }
-            %>
         </center>
     </body>
 </html>
