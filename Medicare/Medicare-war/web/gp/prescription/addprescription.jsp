@@ -54,11 +54,19 @@
                 </tr>
                 <tr>
                     <td>Start Time</td>
-                    <td><input type="text" name="stime" value="0" /></td>
+                    <td>
+                        <input type="text" name="stime0" size="2" value="01" />-
+                        <input type="text" name="stime1" size="2" value="01" />-
+                        <input type="text" name="stime2" size="2" value="09" />
+                    </td>
                 </tr>
                 <tr>
                     <td>End Time</td>
-                    <td><input type="text" name="etime" value="0" /></td>
+                    <td>
+                        <input type="text" name="etime0" size="2" value="01" />-
+                        <input type="text" name="etime1" size="2" value="01" />-
+                        <input type="text" name="etime2" size="2" value="09" />
+                    </td>
                 </tr>
                 <tr>
                     <td>Fixed</td>
@@ -78,8 +86,8 @@
             String p_unit   = request.getParameter("unit");
             String p_fixed   = request.getParameter("fixed");
             String p_freq   = request.getParameter("freq");
-            String p_stime   = request.getParameter("stime");
-            String p_etime   = request.getParameter("etime");
+            String p_stime   = request.getParameter("stime0")+"-"+request.getParameter("stime1")+"-"+request.getParameter("stime2");
+            String p_etime   = request.getParameter("etime0")+"-"+request.getParameter("etime1")+"-"+request.getParameter("etime2");
             
             PrescriptionDetails pd = new PrescriptionDetails(p_unit,p_freq,p_stime,p_etime, p_fixed,medication);
             if(gpRemote.addPrescription(gp_name, gp_password, username , pd)) {

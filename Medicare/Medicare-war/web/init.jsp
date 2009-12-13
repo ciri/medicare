@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ page import="javax.servlet.http.HttpSession"%>
 
-<%@ page import="javax.naming.*,ejb.patient.PatientRemote,ejb.gp.GPRemote"%>
+<%@ page import="javax.naming.*,ejb.patient.PatientRemote,ejb.gp.GPRemote,util.PrescriptionDetails,util.MedicationDetails"%>
 
 <%!
     private PatientRemote patientRemote = null;
@@ -47,7 +47,11 @@
                 else
                     out.print("Error adding patient "+i+" to gp0<br/>");
              }
-
+            //Geef patient een taak
+            MedicationDetails   md = new MedicationDetails("ibuprofen","1","200");
+            PrescriptionDetails pd = new PrescriptionDetails("1","2","01-01-1999","04-04-2011","true","ibuprofen");
+            gpRemote.addMedication("gp0", "gp0", md);
+            gpRemote.addPrescription("gp0", "gp0", "patient0", pd);
         %>
 
 <%@include file="jspf/footer.jspf" %>
