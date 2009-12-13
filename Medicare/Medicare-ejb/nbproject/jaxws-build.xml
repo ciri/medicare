@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xalan="http://xml.apache.org/xslt" xmlns:ejbjarproject2="http://www.netbeans.org/ns/j2ee-ejbjarproject/2" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+    <!--
+                ===================
+                JAX-WS WSGEN SECTION
+                ===================
+            -->
+    <!--
+                ===================
+                JAX-WS WSIMPORT SECTION
+                ===================
+            -->
+    <target name="wsimport-init" depends="init">
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <mkdir dir="${classes.dir}"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${j2ee.platform.wsimport.classpath}"/>
+        </taskdef>
+    </target>
+    <target name="wsimport-client-DoseCheckerBean" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/DoseCheckerBean"/>
+        <property name="wsdl-DoseCheckerBean" location="${meta.inf}/xml-resources/web-service-references/DoseCheckerBean/wsdl/chaos169.test.atlantis.ugent.be_8080/DoseCheckerBeanService/DoseCheckerBean.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/DoseCheckerBean" destdir="${build.generated.dir}/jax-wsCache/DoseCheckerBean" wsdl="${wsdl-DoseCheckerBean}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://chaos169.test.atlantis.ugent.be:8080/DoseCheckerBeanService/DoseCheckerBean?wsdl"/>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/DoseCheckerBean">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-DoseCheckerBean" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/DoseCheckerBean"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/entities"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-DoseCheckerBean"/>
+</project>

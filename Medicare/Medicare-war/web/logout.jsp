@@ -13,6 +13,6 @@
         <%
             request.getSession().invalidate();
         %>
-        <jsp:forward page="login.jsp" />
+        <jsp:forward page="index.jsp" />
     </body>
 </html>
