@@ -15,4 +15,5 @@
                 | <a href="${pageContext.request.contextPath}/patient/addmeasurement.jsp">Add Measurement</a>
                 | <a href="${pageContext.request.contextPath}/patient/myprescriptions.jsp">My Prescriptions</a>
                 | <a href="${pageContext.request.contextPath}/patient/viewnexttask.jsp">Next Task</a>
+                | <a href="${pageContext.request.contextPath}/logout.jsp">Logout</a>
                 </center>

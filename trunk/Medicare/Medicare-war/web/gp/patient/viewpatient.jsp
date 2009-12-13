@@ -2,18 +2,16 @@
 <%@ page import="util.PatientDetails,java.util.List"%>
 
         <h1>View Patient</h1>
-        <%@include file="../jspf/patientremote.jspf" %>
         <%@include file="../jspf/gpremote.jspf" %>
 
         <%!
             public void jspInit() {
-                patientRemote = getPatientRemote();
                 gpRemote = getGPRemote();
             }
          %>
          <%
-            String viewname = request.getParameter("username");
-            PatientDetails pd = gpRemote.getPatientDetails(session_username, session_password,viewname);
+            String username = request.getParameter("username");
+            PatientDetails pd = gpRemote.getPatientDetails(username);
 
             if(pd != null) {
          %>
