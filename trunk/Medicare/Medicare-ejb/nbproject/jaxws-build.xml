@@ -17,19 +17,22 @@
             <classpath path="${j2ee.platform.wsimport.classpath}"/>
         </taskdef>
     </target>
-    <target name="wsimport-client-DoseCheckerBean" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/DoseCheckerBean"/>
-        <property name="wsdl-DoseCheckerBean" location="${meta.inf}/xml-resources/web-service-references/DoseCheckerBean/wsdl/chaos169.test.atlantis.ugent.be_8080/DoseCheckerBeanService/DoseCheckerBean.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/DoseCheckerBean" destdir="${build.generated.dir}/jax-wsCache/DoseCheckerBean" wsdl="${wsdl-DoseCheckerBean}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://chaos169.test.atlantis.ugent.be:8080/DoseCheckerBeanService/DoseCheckerBean?wsdl"/>
+    <target name="wsimport-client-DoseCheckerBean_1" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/DoseCheckerBean_1"/>
+        <property name="wsdl-DoseCheckerBean_1" location="${meta.inf}/xml-resources/web-service-references/DoseCheckerBean_1/wsdl/chaos169.test.atlantis.ugent.be_8080/DoseCheckerBeanService/DoseCheckerBean.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/DoseCheckerBean_1" destdir="${build.generated.dir}/jax-wsCache/DoseCheckerBean_1" wsdl="${wsdl-DoseCheckerBean_1}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://chaos169.test.atlantis.ugent.be:8080/DoseCheckerBeanService/DoseCheckerBean?wsdl" xnocompile="true">
+            <depends file="${wsdl-DoseCheckerBean_1}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/DoseCheckerBean_1"/>
+        </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/DoseCheckerBean">
+            <fileset dir="${build.generated.dir}/jax-wsCache/DoseCheckerBean_1">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-DoseCheckerBean" depends="-init-project">
-        <delete dir="${build.generated.dir}/jax-wsCache/DoseCheckerBean"/>
+    <target name="wsimport-client-clean-DoseCheckerBean_1" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/DoseCheckerBean_1"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/entities"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-DoseCheckerBean"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-DoseCheckerBean_1"/>
 </project>
