@@ -2,7 +2,7 @@
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services/>
   <clients>
-    <client name="DoseCheckerBean">
+    <client name="DoseCheckerBean_1">
       <wsdl-url>http://chaos169.test.atlantis.ugent.be:8080/DoseCheckerBeanService/DoseCheckerBean?wsdl</wsdl-url>
       <local-wsdl-file>chaos169.test.atlantis.ugent.be_8080/DoseCheckerBeanService/DoseCheckerBean.wsdl</local-wsdl-file>
       <package-name>entities</package-name>
@@ -19,6 +19,10 @@
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
           <wsimport-option-value>http://chaos169.test.atlantis.ugent.be:8080/DoseCheckerBeanService/DoseCheckerBean?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>

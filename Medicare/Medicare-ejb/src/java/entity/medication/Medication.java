@@ -31,6 +31,26 @@ public class Medication implements Serializable {
     private double standarddose;
     @Column
     private String unitdose;
+    @Column
+    private String measurementrequired;
+
+    /**
+     * Get the value of measurementrequired
+     *
+     * @return the value of measurementrequired
+     */
+    public String getMeasurementrequired() {
+        return measurementrequired;
+    }
+
+    /**
+     * Set the value of measurementrequired
+     *
+     * @param measurementrequired new value of measurementrequired
+     */
+    public void setMeasurementrequired(String measurementrequired) {
+        this.measurementrequired = measurementrequired;
+    }
 
     /**
      * Get the value of unitdose

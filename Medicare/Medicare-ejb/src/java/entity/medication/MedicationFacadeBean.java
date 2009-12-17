@@ -23,6 +23,7 @@ public class MedicationFacadeBean implements MedicationFacadeLocal {
         m.setName(md.getName());
         m.setStandarddose(m.getStandarddose());
         m.setUnitdose(md.getUnitdose());
+        m.setMeasurementrequired(md.getMeasurementrequired());
         em.persist(m);
         return true;
     }
@@ -54,7 +55,8 @@ public class MedicationFacadeBean implements MedicationFacadeLocal {
         return new MedicationDetails(
             m.getName(),
             m.getStandarddose(),
-            m.getUnitdose()
+            m.getUnitdose(),
+            m.getMeasurementrequired()
         );
     }
     public void persist(Object object) {
