@@ -6,7 +6,7 @@
     <head>
         <title>Medicare v1.0</title>
         <LINK href="${pageContext.request.contextPath}/style.css" rel="stylesheet" type="text/css">
-        <LINK href="${pageContext.request.contextPath}/patient/jspf/patientstyle.css" rel="stylesheet" type="text/css">
+ <!--     <LINK href="${pageContext.request.contextPath}/patient/jspf/patientstyle.css" rel="stylesheet" type="text/css">-->
     </head>
     <body>
         <div id="logoDiv">

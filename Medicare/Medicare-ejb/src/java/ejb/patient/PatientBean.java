@@ -26,6 +26,7 @@ import util.TaskDetails;
 public class PatientBean implements PatientRemote {
     @WebServiceRef(wsdlLocation = "META-INF/wsdl/chaos169.test.atlantis.ugent.be_8080/DoseCheckerBeanService/DoseCheckerBean.wsdl")
     private DoseCheckerBeanService service;
+ 
   
     @EJB
     private PatientFacadeLocal patientFacadeBean;
@@ -61,9 +62,10 @@ public class PatientBean implements PatientRemote {
             else {
                 int dose=0;
 
+
                 try { // Call Web Service Operation
                     entities.DoseCheckerBean port = service.getDoseCheckerBeanPort();
-                    
+
                     String measurementType = curr_task.getPrescription().getMedication().getMeasurementrequired();
                     List<MeasurementDetails> measurements = patient.getMeasurementsOfType(measurementType);
                     if(measurements == null || measurements.size() == 0) {
@@ -72,18 +74,19 @@ public class PatientBean implements PatientRemote {
                     }
                     curr_task.setNewmeasurementrequired(false);
 
-                    double measurementValue = measurements.get(measurements.size()-1).getMeasuredvalue();                    
+                    double measurementValue = measurements.get(measurements.size()-1).getMeasuredvalue();
                     String medication = curr_task.getPrescription().getMedication().getName();
                     double standardDose = curr_task.getDose();
 
                     System.out.println("getVariableDoseForName("+measurementType+","+measurementValue+","+medication+","+standardDose+") == ?");
-                    double result = port.getVariableDoseForName(measurementType, measurementValue, medication, standardDose);                    
+                    double result = port.getVariableDoseForName(measurementType, measurementValue, medication, standardDose);
                     System.out.println("getVariableDoseForName("+measurementType+","+measurementValue+","+medication+","+standardDose+") == "+result);
                     dose = (int) Math.round(result);
                 } catch (Exception ex) {
                     dose = 0;
                     ex.printStackTrace();
                 }
+
                 curr_task.setDose(dose);
             }
             return curr_task;
