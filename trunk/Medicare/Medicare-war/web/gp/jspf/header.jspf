@@ -18,7 +18,7 @@
         %>
         <div id="menuDiv">
                  <a href="${pageContext.request.contextPath}/init.jsp">Init</a>
-                 <a href="${pageContext.request.contextPath}/index.jsp">Index</a>
+                 <a href="${pageContext.request.contextPath}/gp/index.jsp">Index</a>
                  <a href="${pageContext.request.contextPath}/gp/patient/addpatient.jsp">Add Patient</a>
                  <a href="${pageContext.request.contextPath}/gp/medication/addmedication.jsp">Add Medication</a>
                  <a href="${pageContext.request.contextPath}/gp/patient/patientoverview.jsp">Patient Overview</a>
